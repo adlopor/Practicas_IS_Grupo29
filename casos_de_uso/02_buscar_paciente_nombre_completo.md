@@ -1,14 +1,14 @@
-## Buscar a un paciente en el sistema
+## Buscar a un paciente en el sistema.
 
-**ID**: 02
-**Descripción**: Se introduce el nombre completo de un paciente y se busca su ficha en la base de datos.
+**ID:** 02.
+**Descripción:** Se introduce el nombre completo de un paciente y se busca su ficha en la base de datos.
 
-**Actores principales**: Administrador
+**Actores principales:** Administrador.
 
-**Precondiciones**:
+**Precondiciones:**
 * Qué el paciente ya exista en la base de datos del sistema.
 
-**Flujo principal**:
+**Flujo principal:**
 1. El administrador desea buscar a un paciente en el sistema.
 1. El administrador abre el cuadro de diálogo de buscar a un paciente.
 1. El administrador introduce el nombre completo del paciente.
@@ -16,8 +16,8 @@
 1. El sistema muestra la información del paciente.
 1. El sistema muestra un cuadro de acción, en el que están las opciones; ver el historial clínico del paciente, añadir una nueva cita, modificar una cita, cancelar una cita y volver al menú inicial. 
 
-**Postcondiciones**:
-* Ninguna
+**Postcondiciones:**
+* Ninguna.
 
-**Flujos alternativos**:
+**Flujos alternativos:**
 5.a. Si no existe el paciente, se muestra un mensaje de error.
