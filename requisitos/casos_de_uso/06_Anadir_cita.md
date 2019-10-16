@@ -12,7 +12,7 @@
 **Flujo principal:**
 1. El administrador desea ingresar en el sistema una nueva cita para un paciente determinado.
 1. El administrador abre el cuadro de diálogo de añadir nueva cita.
-1. El administrador busca y localiza al paciente cuyos datos de van a modificar (caso de uso <02>).
+1. El administrador busca y localiza al paciente cuyos datos se van a modificar (caso de uso <02>).
 1. El administrador introduce los datos de la nueva cita que se le quiere asignar al paciente.
 1. El sistema comprueba que no exista ya otra cita en la fecha y hora indicados.
 1. El sistema almacena la información de la nueva cita en la base de datos.
