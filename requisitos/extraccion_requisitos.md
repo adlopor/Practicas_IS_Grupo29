@@ -42,6 +42,9 @@
 1. Modificar cita.
 1. Cancelar cita.
 1. Ver historial clínico del paciente.
+1. Añadir información al historial clínico.
+1. Visualizar tratamientos.
+1. Añadir tratamiento.
 1. Visualizar citas día actual.
 
 
