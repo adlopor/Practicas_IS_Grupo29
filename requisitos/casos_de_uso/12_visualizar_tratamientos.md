@@ -1,6 +1,6 @@
 ## Visualizar Tratamiento de un Paciente
 
-**ID:** 11.
+**ID:** 12.
 **Descripción:** Se visualiza el tratamiento de un paciente.
 
 **Actores principales:** Administrador.

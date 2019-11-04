@@ -1,6 +1,6 @@
 ## Cancelar cita.
 
-**ID:** 08.
+**ID:** 09.
 **Descripción:** El sistema cancela una cita existente.
 
 **Actores principales:** Administrador.

@@ -8,7 +8,8 @@
 #### Datos que gestiona el sistema:
 
 * Pacientes:
-  * Nombre completo.
+  * Nombre.
+  * Apellidos.
   * Teléfono.
   * Dirección postal.
   * Fecha nacimiento.
@@ -17,10 +18,10 @@
 * Cita:
   * Fecha.
   * Hora.
-  * Nombre completo paciente.
-
+  * Paciente.
+  
 * Historial:
-  * Nombre completo del paciente.
+  * Paciente.
   * Motivo de consulta.
   
 * Tratamiento:
@@ -34,10 +35,11 @@
 	
 #### Requisitos funcionales (ordenados por prioridad):
 1. Dar de alta un paciente.
-1. Buscar paciente por nombre completo.
+1. Buscar paciente.
 1. Generar lista de pacientes.
 1. Modificar datos paciente.
 1. Eliminar paciente.
+1. Consultar citas de un paciente.
 1. Añadir nueva cita.
 1. Modificar cita.
 1. Cancelar cita.
@@ -45,6 +47,7 @@
 1. Añadir información al historial clínico.
 1. Visualizar tratamientos.
 1. Añadir tratamiento.
+1. Cancelar tratamiento
 1. Visualizar citas día actual.
 
 

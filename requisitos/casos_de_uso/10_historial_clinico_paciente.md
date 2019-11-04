@@ -1,6 +1,6 @@
 ## Ver el historial clínico del paciente.
 
-**ID:** 09.
+**ID:** 10.
 **Descripción:** El sistema muestra el historial clínico de un paciente.
 
 **Actores principales:** Administrador.

@@ -1,6 +1,6 @@
 ## Modificar cita.
 
-**ID:** 07.
+**ID:** 08.
 **Descripción:** El sistema modifica una cita existente.
 
 **Actores principales:** Administrador.

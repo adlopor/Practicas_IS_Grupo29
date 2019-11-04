@@ -1,13 +1,12 @@
 ## Añadir un tratamiento nuevo para un paciente.
 
-**ID:** 12.
+**ID:** 13.
 **Descripción:** Se introducen los datos del nuevo tratamiento para el paciente y el sistema lo almacena.
 
 **Actores principales:** Administrador.
 
 **Precondiciones:**
 * Qué el paciente pertenezca a la base de datos.
-* Qué el no haya un tratamiento igual previo para el paciente.
 
 **Flujo principal:**
 1. El administrador desea ingresar en el sistema un nuevo tratamiento para un paciente determinado.

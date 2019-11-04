@@ -1,6 +1,6 @@
 ## Añadir una cita nueva para un paciente.
 
-**ID:** 06.
+**ID:** 07.
 **Descripción:** Se introducen los datos de la nueva cita para el paciente y el sistema lo almacena.
 
 **Actores principales:** Administrador.

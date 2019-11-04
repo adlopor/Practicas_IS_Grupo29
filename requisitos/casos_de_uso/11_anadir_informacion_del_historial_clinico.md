@@ -1,6 +1,6 @@
 ## Añadir información al historial clínico
 
-**ID:** 10.
+**ID:** 11.
 **Descripción:** Poder añadir nueva información relativa al estado de salud y enfermedades del paciente.
 
 **Actores principales:** Administrador.
