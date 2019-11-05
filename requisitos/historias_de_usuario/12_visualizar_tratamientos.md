@@ -1,12 +1,11 @@
-
-**ID**: 11
+**ID**: 12
 **Nombre**: Visualizar tratamientos
 
-**Prioridad** (de 1 a 13): 11
+**Prioridad** (de 1 a 13): 12
 **Puntos estimado**: 1
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 

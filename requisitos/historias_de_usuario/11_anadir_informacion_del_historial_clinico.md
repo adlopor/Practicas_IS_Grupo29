@@ -1,14 +1,11 @@
-
-
-
-**ID**: 10
+**ID**: 11
 **Nombre**: Añadir información al historial clínico
 
-**Prioridad** (de 1 a 13): 10
+**Prioridad** (de 1 a 15): 11
 **Puntos estimado**: 1
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 

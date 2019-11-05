@@ -1,13 +1,11 @@
-
-
 **ID**: 01
 **Nombre**: Dar de alta a un paciente en el sistema
 
-**Prioridad** (de 1 a 13): 1
+**Prioridad** (de 1 a 15): 1
 **Puntos estimado**: 3
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 

@@ -1,13 +1,11 @@
-
-
-**ID**: 09
+**ID**: 10
 **Nombre**: Ver historial clínico del paciente
 
-**Prioridad** (de 1 a 13): 9
+**Prioridad** (de 1 a 15): 10
 **Puntos estimado**: 1
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 

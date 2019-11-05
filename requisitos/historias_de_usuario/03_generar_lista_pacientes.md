@@ -1,13 +1,11 @@
-
-
 **ID**: 03
 **Nombre**: Generar una lista de los pacientes dentro del sistema
 
-**Prioridad** (de 1 a 13): 3
+**Prioridad** (de 1 a 15): 3
 **Puntos estimado**: 1
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 
@@ -17,4 +15,3 @@ Como *administrador* quiero *poder generar una lista de pacientes* para *ver los
 
 * Deben aparecer todos los pacientes del sistema
 * Se debe mostrar su nombre completo
-

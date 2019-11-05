@@ -1,13 +1,11 @@
-
-
-**ID**: 06
+**ID**: 07
 **Nombre**: Añadir cita
 
-**Prioridad** (de 1 a 13): 6
+**Prioridad** (de 1 a 15): 7
 **Puntos estimado**: 3
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 

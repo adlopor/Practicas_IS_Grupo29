@@ -1,32 +1,11 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-**ID**: 13
+**ID**: 15
 **Nombre**: Visualizar citas del día actual
 
-**Prioridad** (de 1 a 13): 13
+**Prioridad** (de 1 a 15): 15
 **Puntos estimado**: 2
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 

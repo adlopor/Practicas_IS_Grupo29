@@ -1,14 +1,11 @@
-
-
-
 **ID**: 02
-**Nombre**: Buscar usuario por nombre completo
+**Nombre**: Buscar paciente en el sistema
 
-**Prioridad** (de 1 a 13): 2
+**Prioridad** (de 1 a 15): 2
 **Puntos estimado**: 3
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 

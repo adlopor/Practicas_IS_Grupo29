@@ -1,14 +1,11 @@
-
-
-
 **ID**: 04
 **Nombre**: Modificar datos del paciente
 
-**Prioridad** (de 1 a 10): 4
+**Prioridad** (de 1 a 15): 4
 **Puntos estimado**: 2
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 
