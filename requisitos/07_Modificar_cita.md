@@ -7,7 +7,7 @@
 **Puntos estimado**: 2
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador
 
 #### Descripción
 
@@ -16,6 +16,7 @@ Como *administrador* quiero *poder modificar una cita* para *poder cambiar la fe
 #### Validación
 
 * Se debe haber añadido esa cita con anterioridad para poder modificarla 
+* Se debe comprobar disponibilidad antes de poder modificarla
 * Se debe poder modificar la fecha
 * Se debe poder modificar la hora
 * Se deben guardar los cambios dentro del sistema
