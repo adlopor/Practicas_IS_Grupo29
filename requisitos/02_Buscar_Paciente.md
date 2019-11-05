@@ -18,7 +18,6 @@ Como *administrador* quiero *localizar a un paciente* para *consultar su informa
 
 * Se debe poder localizar cualquier paciente
 * Los resultados de la búsqueda han de ofrecer un solo resultado
-* Es necesario utilizar el nombre completo
 * Se deben mostrar todos los datos del paciente
 * Se debe mostrar el historial médico del paciente
 * Se deben mostrar los tratamientos que el paciente ha recibido
