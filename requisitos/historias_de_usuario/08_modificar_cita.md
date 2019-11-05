@@ -1,9 +1,7 @@
-
-
-**ID**: 07
+**ID**: 08
 **Nombre**: Modificar cita
 
-**Prioridad** (de 1 a 13): 7
+**Prioridad** (de 1 a 15): 8
 **Puntos estimado**: 2
 **Iteración**: 1
 

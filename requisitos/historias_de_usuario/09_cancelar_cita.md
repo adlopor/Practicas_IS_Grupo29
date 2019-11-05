@@ -1,13 +1,11 @@
-
-
-**ID**: 08
+**ID**: 09
 **Nombre**: Cancelar cita
 
-**Prioridad** (de 1 a 13): 8
+**Prioridad** (de 1 a 15): 9
 **Puntos estimado**: 1
 **Iteración**: 1
 
-**Responsable**: Grupo 29
+**Responsable**: Administrador.
 
 #### Descripción
 
