@@ -1,1 +1,1 @@
-![Diagrama de casos de uso](diagrama_casos_uso.jpg)
+![Diagrama de casos de uso](imagen_diagrama_casos_uso.jpg)
