@@ -11,7 +11,7 @@
 
 **Flujo principal:**
 1. El administrador desea añadir nueva información al historial clínico.
-1. El administrador abre el buscador de pacientes y selecciona al deseado.
+1. El administrador busca y localiza al paciente cuyo historial se va a visualizar (caso de uso <02>).
 1. Una vez en el paciente se selecciona la opción añadir información al historial clínico, se procede y se guarda la nueva la nueva información.
 
 **Postcondiciones:**
