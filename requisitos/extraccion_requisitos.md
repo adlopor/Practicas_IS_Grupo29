@@ -22,9 +22,11 @@
   
 * Historial:
   * Paciente.
+  * Fecha
   * Motivo de consulta.
   
 * Tratamiento:
+  * Paciente.
   * Nombre.
   * Fecha de inicio.
   * Fecha de finalización.
