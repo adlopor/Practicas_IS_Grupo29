@@ -5,7 +5,7 @@
 | Descripción | 
 | Esta  clase  contendrá  las  funciones  del paciente. Entre ellas se encuentra la de cargar un paciente en el sistema y la de borrar paciente. |  
 | Datos | 
-| -nombre | string | Nombre del paciente dentro del sistema
+| -nombre | string | Nombre del paciente dentro del sistema |
 | -apellidos | string | Apellidos del paciente dentro del sistema
 | -teléfono | string | Teléfono del paciente
 | -dirección postal | string | Dirección postal del paciente a la que se le mandarán las citas
