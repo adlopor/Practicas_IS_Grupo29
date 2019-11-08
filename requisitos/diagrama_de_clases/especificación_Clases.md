@@ -1,6 +1,7 @@
 
+
 | Clase:Paciente |
-|--|--|--|
+| -- |
 | Descripción | 
 | Esta  clase  contendrá  las  funciones  del paciente. Entre ellas se encuentra la de cargar un paciente en el sistema y la de borrar paciente. |  
 | Datos | 
@@ -14,5 +15,6 @@
 | +cargarPaciente | Función mediante la cual se dará de alta a un paciente dentro del sistema |
 | +guardarPaciente | Función mediante la cual se guardarán datos y actualizaciones de la información de un paciente dentro del sistema |
 | +borrarPaciente |  Función mediante la cual se borrará a un paciente dentro del sistema después de un período largo de inactividad |
+
 
 
