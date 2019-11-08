@@ -3,11 +3,16 @@
 | Clase:Paciente |
 | -- | 
 | Descripción | 
-| -- | 
-| Esta  clase  contendrá  las  funciones  del paciente. Entre ellas  |  
+| Esta  clase  contendrá  las  funciones  del paciente. Entre ellas se encuentra la de cargar un paciente en el sistema y la de borrar paciente. |  
 | Datos | 
-| -- | -- | -- |
-| Contenido 3-1 |  
+| -nombre | string | Nombre del paciente dentro del sistema
+| -apellidos | string | Apellidos del paciente dentro del sistema
+| -teléfono | string | Teléfono del paciente
+| -dirección postal | string | Dirección postal del paciente a la que se le mandarán las citas
+| -fecha de nacimiento | string | Fecha de nacimiento del paciente
+| -tarjeta sanitaria | boolean | Adoptará valor true si el paciente viene de la seguridad pública y false si viene de la privada
 | Métodos | 
-| -- | -- | -- |
-| Contenido 3-1 |  
+| +cargarPaciente | Función mediante la cual se dará de alta a un paciente dentro del sistema
+| +guardarPaciente | Función mediante la cual se guardarán datos y actualizaciones de la información de un paciente dentro del sistema
+| +borrarPaciente |  Función mediante la cual se borrará a un paciente dentro del sistema después de un período largo de inactividad
+
