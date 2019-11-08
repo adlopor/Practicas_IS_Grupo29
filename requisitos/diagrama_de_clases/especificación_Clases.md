@@ -17,6 +17,9 @@
 
 
 
+
+
+
 | Clase: Cita |
 | -- |
 | Descripción | 
@@ -28,6 +31,38 @@
 | +cargarCita : Función mediante la cuál se introducirá la cita de un paciente dentro del sistema |
 | +guardarCita : Función mediante la cual se guardarán los datos y actualizaciones de la cita de un paciente dentro del sistema |
 | +borrarCita :  Función mediante la cual se anulará la cita de un paciente |
+
+
+
+| Clase: Registro de historial |
+| -- |
+| Descripción | 
+| Esta  clase  contendrá  las  funciones e información referentes al historial clínico de los distintos pacientes. |  
+| Datos | 
+| -motivo de consulta (string ) : Indica el motivo por el que el paciente ha acudido a la clínica |
+| -fecha (string) : Indica la hora en la que la consulta ha tenido lugar |
+| Métodos | 
+| +cargarHistorial : Función mediante la cuál se crea el historial médico de un paciente tras su primera visita a la clínica. |
+| +guardarHistorial : Función mediante la cual se guardarán los datos y actualizaciones del historial médico de un paciente dentro del sistema. |
+| +borrarHistorial :  Función mediante la cual se eliminará el historial médico de un paciente tras un largo periodo de inactividad. |
+
+
+
+
+| Clase: Tratamiento |
+| -- |
+| Descripción | 
+| Esta  clase  contendrá  las  funciones e información referente a los distintos tratamientos asignados a los pacientes dentro del sistema. |  
+| Datos | 
+| -nombre (string): Nombre del tratamiento |
+| -fecha de inicio (string) : fecha en la que el paciente comienza a tomar el tratamiento |
+| -fecha de fin (string) : fecha en la que el paciente termina de tomar el tratamiento |
+| -periocidad (string) : Indica cada cuanto tiempo el paciente debe tomar el tratamiento asignado |
+| -dosis(string) : Indica la dosis del tratamieto asignado que el paciente debe de tomar |
+| Métodos | 
+| +cargarTratamiento : Función mediante la cual se añade un nuevo tratamiento a uno de los pacientes dentro del sistema |
+| +guardarTratamiento : Función mediante la cual se guardarán los datos y actualizaciones que los tratamientos de un paciente dentro del sistema sufran |
+| +borrarTratamiento : Función mediante la cual se borrará uno de los tratamientos asignados a un paciente |
 
 
 
