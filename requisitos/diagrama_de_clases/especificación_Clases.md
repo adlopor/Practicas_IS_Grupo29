@@ -11,9 +11,9 @@
 | -fecha de nacimiento (string) : Fecha de nacimiento del paciente |
 | -tarjeta sanitaria (boolean) : Adoptará valor true si el paciente viene de la seguridad pública y false si viene de la privada |
 | Métodos | 
-| +cargarPaciente : Función mediante la cual se dará de alta a un paciente dentro del sistema |
-| +guardarPaciente : Función mediante la cual se guardarán datos y actualizaciones de la información de un paciente dentro del sistema |
-| +borrarPaciente : Función mediante la cual se borrará a un paciente dentro del sistema después de un período largo de inactividad |
+| +cargarPaciente : Función mediante la cual se buscará a un paciente dentro de la base de datos del sistema |
+| +guardarPaciente : Función mediante la cual se añadirán y guardarán los datos y actualizaciones de la información de un paciente dentro del sistema |
+| +borrarPaciente : Función mediante la cual se busca a un paciente dentro de la base de datos del sistema y se elimina |
 
 
 
@@ -28,9 +28,9 @@
 | -fecha(string ) : Indica la fecha en la que la cita tendrá lugar |
 | -hora (string) : Indica la hora en la que la cita tendrá lugar |
 | Métodos | 
-| +cargarCita : Función mediante la cuál se introducirá la cita de un paciente dentro del sistema |
-| +guardarCita : Función mediante la cual se guardarán los datos y actualizaciones de la cita de un paciente dentro del sistema |
-| +borrarCita :  Función mediante la cual se anulará la cita de un paciente |
+| +cargarCita : Función mediante la cuál se buscará la cita de un paciente dentro de la base de datos del sistema |
+| +guardarCita : Función mediante la cual se añadirán y guardarán los datos y actualizaciones de la cita de un paciente dentro del sistema |
+| +borrarCita :  Función mediante la cual se buscará una cita concreta mediante la fecha y se anulará. |
 
 
 
@@ -42,9 +42,9 @@
 | -motivo de consulta (string ) : Indica el motivo por el que el paciente ha acudido a la clínica |
 | -fecha (string) : Indica la hora en la que la consulta ha tenido lugar |
 | Métodos | 
-| +cargarHistorial : Función mediante la cuál se crea el historial médico de un paciente tras su primera visita a la clínica. |
-| +guardarHistorial : Función mediante la cual se guardarán los datos y actualizaciones del historial médico de un paciente dentro del sistema. |
-| +borrarHistorial :  Función mediante la cual se eliminará el historial médico de un paciente tras un largo periodo de inactividad. |
+| +cargarHistorial : Función mediante la cuál se buscará el historial médico de un paciente dentro de la base de datos del sistema |
+| +guardarHistorial : Función mediante la cual se añadirá y guardará información en el  historial médico de uno de los pacientes dentro del sistema. |
+| +borrarHistorial : Función mediante la cual se buscará el historial médico de uno de los pacientes contenidos en la base de datos del sistema y se eliminará.|
 
 
 
@@ -60,9 +60,9 @@
 | -periocidad (string) : Indica cada cuanto tiempo el paciente debe tomar el tratamiento asignado |
 | -dosis(string) : Indica la dosis del tratamieto asignado que el paciente debe de tomar |
 | Métodos | 
-| +cargarTratamiento : Función mediante la cual se añade un nuevo tratamiento a uno de los pacientes dentro del sistema |
-| +guardarTratamiento : Función mediante la cual se guardarán los datos y actualizaciones que los tratamientos de un paciente dentro del sistema sufran |
-| +borrarTratamiento : Función mediante la cual se borrará uno de los tratamientos asignados a un paciente |
+| +cargarTratamiento : Función mediante la cual se buscará un tratamiento dentro de la base de datos del sistema |
+| +guardarTratamiento : Función mediante la cual se añadirán nuevos tratamientos y se guardarán las actualizaciones que los tratamientos de un paciente dentro del sistema sufran |
+| +borrarTratamiento : Función mediante la cual se buscará uno de los tratamientos de la base de datos del sistema y se eliminará. |
 
 
 
