@@ -1,16 +1,16 @@
-**ID**: 10
-**Nombre**: Ver historial clínico del paciente
+**ID**: 10.
+**Nombre**: Ver historial clínico del paciente.
 
-**Prioridad** (de 1 a 15): 10
-**Puntos estimado**: 1
-**Iteración**: 1
+**Prioridad** (de 1 a 15): 10.
+**Puntos estimado**: 2.
+**Iteración**: 4.
 
-**Responsable**: Administrador.
+**Responsable**: Javier Luna Carmona.
 
-#### Descripción
+#### Descripción:
 
-Como *administrador* quiero *poder ver el historial del paciente* para *poder conocer sus enfermedades*
+Como _administrador_ quiero _poder ver el historial del paciente_ para _poder conocer sus enfermedades_.
 
-#### Validación
+#### Validación:
 
-* Se debe poder ver el historial clínico de cualquier paciente dado de alta 
+*   Se debe poder ver el historial clínico de cualquier paciente dado de alta.
