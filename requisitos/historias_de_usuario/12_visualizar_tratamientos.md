@@ -1,16 +1,16 @@
-**ID**: 12
-**Nombre**: Visualizar tratamientos
+**ID**: 12.
+**Nombre**: Visualizar tratamientos.
 
-**Prioridad** (de 1 a 13): 12
-**Puntos estimado**: 1
-**Iteración**: 1
+**Prioridad** (de 1 a 13): 12.
+**Puntos estimado**: 2.
+**Iteración**: 4.
 
-**Responsable**: Administrador.
+**Responsable**: Gabriel Rodríguez Raya.
 
-#### Descripción
+#### Descripción:
 
-Como *administrador* quiero *poder visualizar los tratamientos del paciente* para *poder conocer cómo se están tratando sus enfermedades*
+Como _administrador_ quiero _poder visualizar los tratamientos del paciente_ para _poder conocer cómo se están tratando sus enfermedades_.
 
-#### Validación
+#### Validación:
 
-* Se debe poder visualizar los tratamientos de cualquier paciente dado de alta 
+*   Se debe poder visualizar los tratamientos de cualquier paciente dado de alta.

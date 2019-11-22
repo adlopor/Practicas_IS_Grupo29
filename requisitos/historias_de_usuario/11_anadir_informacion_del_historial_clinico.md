@@ -1,16 +1,16 @@
-**ID**: 11
-**Nombre**: Añadir información al historial clínico
+**ID**: 11.
+**Nombre**: Añadir información al historial clínico.
 
-**Prioridad** (de 1 a 15): 11
-**Puntos estimado**: 1
-**Iteración**: 1
+**Prioridad** (de 1 a 15): 11.
+**Puntos estimado**: 4.
+**Iteración**: 4.
 
-**Responsable**: Administrador.
+**Responsable**: Adrián López Ortiz.
 
-#### Descripción
+#### Descripción:
 
-Como *administrador* quiero *poder añadir información al historial del paciente* para *poder llevar un seguimiento de sus enfermedades*
+Como _administrador_ quiero _poder añadir información al historial del paciente_ para _poder llevar un seguimiento de sus enfermedades_.
 
-#### Validación
+#### Validación:
 
-* Se debe poder añadir información al historial clínico de cualquier paciente dado de alta 
+*   Se debe poder añadir información al historial clínico de cualquier paciente dado de alta.

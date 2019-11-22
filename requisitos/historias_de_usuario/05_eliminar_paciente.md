@@ -1,17 +1,17 @@
-**ID**: 05
-**Nombre**: Eliminar paciente dentro del sistema
+**ID**: 05.
+**Nombre**: Eliminar paciente dentro del sistema.
 
-**Prioridad** (de 1 a 15): 5
-**Puntos estimado**: 1
-**Iteración**: 1
+**Prioridad** (de 1 a 15): 5.
+**Puntos estimado**: 2.
+**Iteración**: 2.
 
-**Responsable**: Administrador.
+**Responsable**: Gabriel Rodríguez Raya.
 
-#### Descripción
+#### Descripción:
 
-Como *administrador* quiero *poder eliminar a un paciente* para *tener un sistema actualizado*
+Como _administrador_ quiero _poder eliminar a un paciente_ para _tener un sistema actualizado_.
 
-#### Validación
+#### Validación:
 
-* Se debe eliminar cualquier registro personal del usuario, incluido el historial clínico.
-* Se debe eliminar el paciente de la base de datos.
+*   Se debe eliminar cualquier registro personal del usuario, incluido el historial clínico.
+*   Se debe eliminar el paciente de la base de datos.

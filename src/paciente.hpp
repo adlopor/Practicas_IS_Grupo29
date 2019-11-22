@@ -242,6 +242,27 @@ class Paciente:
 			#endif
 		}
 
+ 		/*!	
+			\name Otros métodos
+		*/
+
+		/*!		
+			\brief  Modifica si el paciente tiene tarjeta Sanitaria pública
+  			\param  p: variable de la clase Paciente 
+  			\post   
+			\return No se devuelve ningún resultado
+  			\sa     getTarjetaSanitaria
+		*/
+		void buscarPaciente (is::Paciente p)
+		{
+   			_tarjetaSanitaria = tarjetaSanitaria;
+
+			#ifndef NDEBUG
+				assert( getTarjetaSanitaria() == tarjetaSanitaria );
+			#endif
+		}
+
+
 }; //Fin de la clase 
 
 } // Fin del espacio de nombres is
