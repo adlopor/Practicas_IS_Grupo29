@@ -11,11 +11,11 @@ class Historial
 {
 	private:
 
-		string nombre_;
-		string fecha_inicio_;
-		string fecha_fin_;
-		string periodicidad_;
-		string dosis_;
+		string _nombre;
+		string _fecha_inicio;
+		string _fecha_fin;
+		string _periodicidad;
+		string _dosis;
 
 
 	public:
@@ -26,65 +26,65 @@ class Historial
 
 		}
 
-		Historial(string nombre, string fecha_inicio, string fecha_fin, string periodicidad, string dosis)
+		Historial(string nombre="", string fecha_inicio="", string fecha_fin="", string periodicidad="", string dosis="")
 		{
-			nombre_=nombre;
-			fecha_inicio_=fecha_inicio;
-			fecha_fin_=fecha_fin;
-			periodicidad_= periodicidad;
-			dosis_= dosis;
+			_nombre=nombre;
+			_fecha_inicio=fecha_inicio;
+			_fecha_fin=fecha_fin;
+			_periodicidad= periodicidad;
+			_dosis= dosis;
 		}
 
 		string getNombre()
 		{
-			return nombre_;
+			return _nombre;
 		}
 
 		string getFechaInicio()
 		{
-			return fecha_inicio_;
+			return _fecha_inicio;
 		}
 
 		string getFechaFin()
 		{
-			return fecha_fin_;
+			return _fecha_fin;
 		}
 
 		string getPeriodicidad()
 		{
-			return periodicidad_;
+			return _periodicidad;
 		}
 
 		string getDosis()
 		{
-			return dosis_;
+			return _dosis;
 		}
 
 
 
 		void setNombre(string h)
 		{
-			nombre_=h;
+			_nombre=h;
 		}
 
 		void setFechaInicio(string h)
 		{
-			fecha_inicio_=h;
+			_fecha_inicio=h;
 		}
 
 		void setFechaFin(string h)
 		{
-			fecha_fin_=h;
+			_fecha_fin=h;
 		}
 
 		void setPeriodicidad(string h)
 		{
-			periodicidad_=h;
+			_periodicidad=h;
 		}
 
 		void setDosis(string h)
 		{
-			dosis_=h;
+			_dosis=h;
 		}
 };
 
