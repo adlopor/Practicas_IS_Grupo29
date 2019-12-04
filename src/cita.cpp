@@ -20,13 +20,46 @@
 //using namespace std;
 
 /*!	
-	\name Sobrecarga de operadores.
+	    \name Sobrecarga de operadores.
 */
+
+is::Cita &is::Cita::operator=(const is::Cita &c)
+{
+		// Se comprueba que no sean el mismo objeto
+		if (this != &c) 
+		{
+			this->getFecha(c.getFecha());
+			this->setHora(e.getHora());
+		}
+
+    // Se devuelve el objeto actual
+		return *this;
+}
+
+bool is::Cita::operator==(const is::Cita & c) const
+{
+		return (    (this->getFecha() == c.getFecha()) 
+            and (this->getHora() == c.getHora()));
+}
+
+
+bool is::Cita::operator <(const is::Cita & c) const
+{
+  // 
+	if (this->getFecha() < c.getFecha())
+       return true;
+	else if (     (this->getFecha() == c.getFecha()) 
+            and (this->getHora() < c.getHora())
+            )
+     		   return true;
+     	else
+   			  return false;
+}
 
 
 /*!	
-	\namespace ed
-	\brief Espacio de nombres para la asignatura Estructuras de Datos
+	\namespace is
+	\brief Espacio de nombres para la asignatura Ingeniería del Software
 */
 namespace is{
 
@@ -39,7 +72,8 @@ std::istream &operator>>(std::istream &i, is::Cita &c)
 /*  Forma alternativa para la lectura de datos numéricos usando una variable auxiliar: cadena
     std::string cadena;
 
-    std::getline(i,cadena); c._fecha= atof(cadena.c_str());
+    std::getline(i,cadena);
+    c._fecha= atof(cadena.c_str());
     
     std::getline(i,cadena);
     c._hora = atof(cadena.c_str());
