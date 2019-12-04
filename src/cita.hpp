@@ -100,30 +100,60 @@ class Cita {
 	*/
 	void setHora(std::string hora)
 
+    /*!	
+	        \name Operadores
+    */
+	
+    /*!		
+	        \brief  Operador de asignacion entre objetos de tipo Cita
+	        \param  c: objeto de tipo Cita
+	        \post   El objeto actual es igual al objeto parámetro
+	        \return Devuelve una referencia al objeto actual
+    */
+	Cita &operator=(const Cita &c);
+		
+    /*!		
+	        \brief  Operador que compara la igualdad lexicográfica por la fecha y hora de dos citas
+	        \param  c: objeto de tipo Cita
+	        \pre    Ambas citas deben tener valores en la fecha y la hora
+	        \post   Ninguna
+    	    \return Devuelve true si las fechas y horas de las citas son iguales. False, en caso contrario
+    */
+	bool operator==(const Cita & c) const;
 
-    
+		
+    /*!		
+	        \brief  Operador que compara la desigualdad lexicográfica por fecha y hora de dos citas
+	        \param  c: objeto de tipo Cita
+	        \pre    Ambos cita deben tener valores en la fecha y la hora
+	        \post   Ninguna
+	        \return Devuelve true si la cita actual precede cronológicamente a la cita pasada como argumento. False, en caso contrario.
+    */
+	bool operator <(const Cita & c) const;
+
+
     /*!
-        \name Funciones amigas para poder acceder a la parte privada de la clase Estudiante.
+            \name Funciones amigas para poder acceder a la parte privada de la clase cita.
     */
 
     /*!
-	    \brief  Operador de inserción
-	    \param  i: flujo de entrada
-	    \param  c: objeto de tipo Cita
-	    \pre    La Cita del parametro debe existir
-	    \post   Se modifican los atributos de la Cita usando los valores insertados por el flujo de entrada
-	    \return Devuelve el stream de entrada
+	        \brief  Operador de inserción
+	        \param  i: flujo de entrada
+	        \param  c: objeto de tipo Cita
+	        \pre    La Cita del parametro debe existir
+	        \post   Se modifican los atributos de la Cita usando los valores insertados por el flujo de entrada
+	        \return Devuelve el stream de entrada
     */
-	friend std::istream &operator>>(std::istream &i, Estudiante &c);
+	friend std::istream &operator>>(std::istream &i, Cita &c);
 
 
     /*!		
-		\brief  Operador de extracción
-	    \param  o: flujo de salida
-	    \param  c: objeto de tipo Cita
-	    \pre    La cita del parametro debe existir
-	    \post   Se escriben los valores de los atributos de la Cita en flujo de salida
-	    \return Devuelve el stream de salida
+	    	\brief  Operador de extracción
+	        \param  o: flujo de salida
+	        \param  c: objeto de tipo Cita
+    	    \pre    La cita del parametro debe existir
+	        \post   Se escriben los valores de los atributos de la Cita en flujo de salida
+	        \return Devuelve el stream de salida
 	*/
 	friend std::ostream &operator<<(std::ostream &o, Cita const &c);
 
