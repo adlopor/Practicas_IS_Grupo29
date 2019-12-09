@@ -9,6 +9,8 @@
 
 #ifndef __CITA_HPP__
 #define __CITA_HPP__
+
+#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
@@ -26,7 +28,7 @@ namespace is {
  
 /*!	
   	\class Cita 
-  	\brief Especificaciones de la clase Cita:
+  	\brief Especificaciones de la clase Cita.
   	\par   Cita perteneciente a un paciente.
 */
 class Cita {
@@ -84,12 +86,17 @@ class Cita {
 
     /*!		
 			\brief  Modifica la fecha de la cita
-  			\param  fecha: cadena que será la nueva fecha de la cita
+  			\note   Función de tipo inline
+			\param  fecha: cadena que será la nueva fecha de la cita
   			\post   La fecha de la cita deberá ser la fecha pasada por argumento
 			\return No se devuelve ningún resultado
   			\sa     getFecha
 	*/
-	void setFecha(std::string fecha)
+	inline void setFecha(std::string fecha){
+
+		this->_fecha = fecha;
+	
+	}
 
     /*!		
 			\brief  Modifica la hora de la cita
@@ -98,7 +105,11 @@ class Cita {
 			\return No se devuelve ningún resultado
   			\sa     getHora
 	*/
-	void setHora(std::string hora)
+	void setHora(std::string hora){
+
+		this->_hora =hora;
+	
+	}
 
     /*!	
 	        \name Operadores
@@ -166,4 +177,3 @@ class Cita {
 
 // Fin de _CITA_HPP_
 #endif
-
