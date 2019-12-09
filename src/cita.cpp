@@ -7,11 +7,11 @@
 */
 
 
-#include <iostream>
-#include <stdio.h>
+//#include <iostream>
+//#include <stdio.h>
 
 // si se desea usar atof en la sobrecarga del operador >>
-#include <stdlib.h>
+//#include <stdlib.h>
 
 #include "cita.hpp"
 
@@ -28,8 +28,8 @@ is::Cita &is::Cita::operator=(const is::Cita &c)
 		// Se comprueba que no sean el mismo objeto
 		if (this != &c) 
 		{
-			this->getFecha(c.getFecha());
-			this->setHora(e.getHora());
+			this->setFecha(c.getFecha());
+			this->setHora(c.getHora());
 		}
 
     // Se devuelve el objeto actual
