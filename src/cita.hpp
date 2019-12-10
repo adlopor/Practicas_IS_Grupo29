@@ -37,14 +37,13 @@ class Cita {
 		\name  Atributos y métodos privados 
 	*/
 	private:
-            //Fecha y hora
-			
+            			
 		 	std::string _fecha;		//!< \brief Cadena de caracteres en la que se almacena la fecha de la cita, estructura: aaaa/mm/dd.
 			std::string _hora;		//!< \brief Cadena de caracteres en la que se almacena la hora, estructura: hh/mm.
 	
 
 	/*!		
-		\name  Métodos públicos de la clase Paciente.
+		\name  Métodos públicos de la clase Cita.
 	*/
  	public:
 	
@@ -107,7 +106,7 @@ class Cita {
 	*/
 	void setHora(std::string hora){
 
-		this->_hora =hora;
+		this->_hora = hora;
 	
 	}
 
