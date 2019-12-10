@@ -28,7 +28,7 @@ namespace is {
  
 /*!	
   	\class Historial 
-  	\brief Especificaciones de la clase Historial:
+  	\brief Especificaciones de la clase Historial.
   	\par   Historial perteneciente a un paciente.
 */
 class Historial {
@@ -43,7 +43,7 @@ class Historial {
             std::string _fecha;		            //!< \brief Cadena de caracteres en la que se almacena la fecha de la cita, estructura: aaaa/mm/dd.
 	
 	/*!		
-		\name  Métodos públicos de la clase Paciente.
+		\name  Métodos públicos de la clase Historial.
 	*/
  	public:
 	
@@ -88,7 +88,7 @@ class Historial {
 			\param  motivoConsulta: cadena que será el nuevo motivo de consulta
             \post   La hora de la cita deberá ser la hora pasada por argumento
 			\return No se devuelve ningún resultado
-  			\sa     getHora
+  			\sa     getMotivoConsulta
 	*/
 	inline void setMotivoConsulta(std::string motivoConsulta){
 
@@ -118,7 +118,7 @@ class Historial {
 	
     /*!		
 	        \brief  Operador de asignacion entre objetos de tipo Historial
-	        \param  h: objeto de tipo Cita
+	        \param  h: objeto de tipo Historial
 	        \post   El objeto actual es igual al objeto parámetro
 	        \return Devuelve una referencia al objeto actual
     */

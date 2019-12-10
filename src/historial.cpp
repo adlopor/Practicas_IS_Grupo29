@@ -16,7 +16,7 @@
 #include "historial.hpp"
 
 // Se han utilizado los calificadores is:: y std:: en vez de las sentencias siguientes
-//using namespace ed;
+//using namespace is;
 //using namespace std;
 
 /*!	

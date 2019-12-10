@@ -16,7 +16,7 @@
 #include "cita.hpp"
 
 // Se han utilizado los calificadores is:: y std:: en vez de las sentencias siguientes
-//using namespace ed;
+//using namespace is;
 //using namespace std;
 
 /*!	
@@ -45,7 +45,6 @@ bool is::Cita::operator==(const is::Cita & c) const
 
 bool is::Cita::operator <(const is::Cita & c) const
 {
-  // 
 	if (this->getFecha() < c.getFecha())
        return true;
 	else if (     (this->getFecha() == c.getFecha()) 
