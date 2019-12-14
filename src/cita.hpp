@@ -94,7 +94,9 @@ class Cita {
 	inline void setFecha(std::string fecha){
 
 		this->_fecha = fecha;
-	
+		#ifndef NDEBUG
+			assert( getFecha() == fecha );
+		#endif
 	}
 
     /*!		
@@ -107,7 +109,11 @@ class Cita {
 	void setHora(std::string hora){
 
 		this->_hora = hora;
-	
+
+		#ifndef NDEBUG
+			assert( getHora() == hora );
+		#endif
+
 	}
 
     /*!	

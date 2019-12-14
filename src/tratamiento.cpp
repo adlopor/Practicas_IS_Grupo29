@@ -28,10 +28,10 @@ is::Tratamiento &is::Tratamiento::operator=(const is::Tratamiento &t)
 		// Se comprueba que no sean el mismo objeto
 		if (this != &t) 
 		{
-            this->setFechaInicio(t.getFechaInicio());
-			this->setFechaFin(t.getFechaFin());
-            this->setPeriodicidad(t.getPeriodicidad());
-            this->getDosis(t.getDosis());
+      this->setFechaInicio(t.getFechaInicio());
+		  this->setFechaFin(t.getFechaFin());
+      this->setPeriodicidad(t.getPeriodicidad());
+      this->setDosis(t.getDosis());
 		}
 
     // Se devuelve el objeto actual

@@ -112,7 +112,10 @@ class Tratamiento {
 	inline void setFechaInicio (std::string fechaInicio){
 
 		this->_fechaInicio = fechaInicio;
-	
+
+		#ifndef NDEBUG
+			assert( getFechaInicio() == fechaInicio );
+		#endif
 	}
 
     /*!		
@@ -126,6 +129,9 @@ class Tratamiento {
 
 		this->_fechaFin = fechaFin;
 	
+		#ifndef NDEBUG
+			assert( getFechaFin() == fechaFin );
+		#endif
 	}
 
     /*!		
@@ -139,6 +145,9 @@ class Tratamiento {
 
 		this->_periodicidad = periodicidad;
 	
+		#ifndef NDEBUG
+			assert( getPeriodicidad() == periodicidad );
+		#endif
 	}
 
     /*!		
@@ -152,6 +161,9 @@ class Tratamiento {
 
 		this->_dosis = dosis;
 	
+		#ifndef NDEBUG
+				assert( getDosis() == dosis );
+		#endif
 	}
 
 

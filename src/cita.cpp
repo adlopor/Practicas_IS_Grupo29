@@ -43,7 +43,7 @@ bool is::Cita::operator==(const is::Cita & c) const
 }
 
 
-bool is::Cita::operator <(const is::Cita & c) const
+bool is::Cita::operator<(const is::Cita & c) const
 {
 	if (this->getFecha() < c.getFecha())
        return true;

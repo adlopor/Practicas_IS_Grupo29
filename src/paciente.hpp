@@ -38,15 +38,15 @@ class Paciente:
 
 	private:
 
-	  	std::string _nombre;     									//!<  \brief Nombre del paciente.
-        std::string _apellidos;     								//!<  \brief Apellidos del paciente.
-        std::string _telefono;                                      //!<  \brief Teléfono del paciente.
-        std::string _direccionPostal;                               //!<  \brief Dirección Postal del paciente.
-        std::string _fechaNacimiento;                               //!<  \brief Fecha de nacimiento del paciente.
-        bool        _tarjetaSanitaria;                              //!<  \brief Tarjeta sanitaria del paciente.
-        std::list<is::Cita> _citas;                                 //!<  \brief Vector de citas del paciente. 
-        std::list<is::Tratamiento> _tratamientos;                   //!<  \brief Vector de tratamientos del paciente.
-        std::list<is::Historial> _historial;                        //!<  \brief Vector de Historial del paciente.
+	  	std::string 				_nombre;     									//!<  \brief Nombre del paciente.
+        std::string 				_apellidos;     								//!<  \brief Apellidos del paciente.
+        std::string 				_telefono;                                      //!<  \brief Teléfono del paciente.
+        std::string 				_direccionPostal;                               //!<  \brief Dirección Postal del paciente.
+        std::string 				_fechaNacimiento;                               //!<  \brief Fecha de nacimiento del paciente.
+        bool        				_tarjetaSanitaria;                              //!<  \brief Tarjeta sanitaria del paciente.
+        std::list<is::Cita> 		_citas;				                            //!<  \brief Vector de citas del paciente. 
+        std::list<is::Tratamiento> 	_tratamientos;				                    //!<  \brief Vector de tratamientos del paciente.
+        std::list<is::Historial> 	_historial;				                        //!<  \brief Vector de Historial del paciente.
 
 	/*!		
 		\name  Métodos públicos de la clase Paciente.
@@ -87,7 +87,7 @@ class Paciente:
 			\return cadena que representa los apellidos del paciente 
   			\sa     setApellidos
 		*/
-		inline std::string getApellidos() const{return _nombre;}
+		inline std::string getApellidos() const{return _apellidos;}
 
 
         /*!		
@@ -114,7 +114,7 @@ class Paciente:
 			\return cadena que representa la fecha de nacimiento del paciente 
   			\sa     setFechaNacimiento
 		*/
-		inline std::string getFechaNacimiento() const{return _nombre;}
+		inline std::string getFechaNacimiento() const{return _fechaNacimiento;}
 
         /*!		
 			\brief  Devuelve si el paciente tiene tarjeta sanitaria
@@ -124,14 +124,14 @@ class Paciente:
 		*/
 		inline bool getTarjetaSanitaria() const
         {
-            if (this->_tarjetaSanitaria)
+            if (_tarjetaSanitaria)
                 return true;
             else
-                return false;       
+                return false;
         }
 
 
-        /*!	
+        /*!
 			\name Modificadores
 		*/
 
@@ -242,25 +242,88 @@ class Paciente:
 			#endif
 		}
 
+
+    /*!	
+	        \name Operadores
+    */
+
+    /*!		
+	        \brief  Operador de asignacion entre objetos de tipo Paciente
+	        \param  p: objeto de tipo Paciente
+	        \post   El objeto actual es igual al objeto parámetro
+	        \return Devuelve una referencia al objeto actual
+    */
+	Tratamiento &operator=(const Paciente &p);
+
+    /*!		
+	        \brief  Operador que compara la igualdad lexicográfica por el nombre, los apellidos, teléfono, dirección postal, fecha de nacimiento y tarjeta sanitaria
+	        \param  p: objeto de tipo Paciente
+	        \pre    Ambas citas deben tener valores en los parámetros; el nombre, los apellidos, teléfono, dirección postal, fecha de nacimiento y tarjeta sanitaria
+			\post   Ninguna
+    	    \return Devuelve true si el nombre, los apellidos, teléfono, dirección postal , fecha de nacimiento y tarjeta sanitaria de los pacientes son iguales. False, en caso contrario
+    */
+	bool operator==(const Paciente &p) const;
+
+    /*!
+	        \brief  Operador que compara la desigualdad lexicográfica por nombre y apellidos de dos pacientes.
+	        \param  p: objeto de tipo Paciente
+	        \pre    Ambos pacientes deben tener valores en los parámetros nombre y apellido.
+	        \post   Ninguna
+	        \return Devuelve true si el paciente actual precede cronológicamente al paciente pasado como argumento. False, en caso contrario
+    */
+	bool operator<(const Paciente &p) const;
+
+
+    /*!
+            \name Funciones amigas para poder acceder a la parte privada de la clase Paciente.
+    */
+
+    /*!
+	        \brief  Operador de inserción
+	        \param  i: flujo de entrada
+	        \param  p: objeto de tipo Paciente
+	        \pre    El paciente del parámetro debe existir
+	        \post   Se modifican los atributos del paciente usando los valores insertados por el flujo de entrada
+	        \return Devuelve el stream de entrada
+    */
+	friend std::istream &operator>>(std::istream &i, Paciente &p);
+
+    /*!		
+	    	\brief  Operador de extracción
+	        \param  o: flujo de salida
+	        \param  p: objeto de tipo Paciente
+    	    \pre    El paciente del parámetro debe existir
+	        \post   Se escriben los valores de los atributos del paciente en flujo de salida
+	        \return Devuelve el stream de salida
+	*/
+	friend std::ostream &operator<<(std::ostream &o, Paciente const &p);
+
+
  		/*!	
 			\name Otros métodos
 		*/
 
-		/*!		
-			\brief  Modifica si el paciente tiene tarjeta Sanitaria pública
-  			\param  p: variable de la clase Paciente 
-  			\post   
-			\return No se devuelve ningún resultado
-  			\sa     getTarjetaSanitaria
+ 		/*!	
+			\name Otros métodos de la clase Cita
 		*/
-		void buscarPaciente (is::Paciente p)
-		{
-   			_tarjetaSanitaria = tarjetaSanitaria;
 
-			#ifndef NDEBUG
-				assert( getTarjetaSanitaria() == tarjetaSanitaria );
-			#endif
-		}
+
+	/*!		
+		\brief  Buscar cita en la lista de citas del paciente
+  		\param  c: variable de la clase Cita 
+		\return No se devuelve ningún resultado
+  		
+	*/
+	void buscarCita (is::Cita &c);
+
+
+	/*!		
+		\brief  
+  		\param  p: variable de la clase Paciente 
+		\return No se devuelve ningún resultado
+  		\sa     
+	*/
+	void buscarPaciente (is::Paciente p);
 
 
 }; //Fin de la clase 
