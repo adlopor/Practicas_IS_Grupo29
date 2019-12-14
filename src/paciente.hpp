@@ -303,6 +303,15 @@ class Paciente:
 			\name Otros métodos
 		*/
 
+	/*!
+		\brief  
+  		\param  p: variable de la clase Paciente 
+		\return No se devuelve ningún resultado
+  		\sa     
+	*/
+	void buscarPaciente (is::Paciente p);
+
+
  		/*!	
 			\name Otros métodos de la clase Cita
 		*/
@@ -310,20 +319,36 @@ class Paciente:
 
 	/*!		
 		\brief  Buscar cita en la lista de citas del paciente
-  		\param  c: variable de la clase Cita 
+  		\param  c: variable de la clase Cita
 		\return No se devuelve ningún resultado
   		
 	*/
 	void buscarCita (is::Cita &c);
 
+	/*!		
+		\brief  Buscar cita en la lista de citas del paciente
+  		\param  c: variable de la clase Cita
+		\return No se devuelve ningún resultado
+  		
+	*/
+	void cargarCita (is::Cita &c);
 
 	/*!		
-		\brief  
-  		\param  p: variable de la clase Paciente 
+		\brief  Buscar cita en la lista de citas del paciente
+  		\param  c: variable de la clase Cita
 		\return No se devuelve ningún resultado
-  		\sa     
+  		
 	*/
-	void buscarPaciente (is::Paciente p);
+	void guardarCita (is::Cita &c);
+
+ 		/*!	
+			\name Otros métodos de la clase Tratamiento
+		*/
+
+
+ 		/*!	
+			\name Otros métodos de la clase Historial
+		*/
 
 
 }; //Fin de la clase 
