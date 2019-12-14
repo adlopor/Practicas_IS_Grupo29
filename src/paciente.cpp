@@ -32,6 +32,7 @@ is::Paciente &is::Paciente::operator=(const is::Paciente &p)
       this->setApellidos(p.getApellidos());
       this->setTelefono(p.getTelefono());
       this->setDireccionPostal(p.getDireccionPostal());
+      this->setFechaNacimiento(p.getFechaNacimiento())
       this->setTarjetaSanitaria(p.getTarjetaSanitaria());
     }
 
@@ -42,10 +43,11 @@ is::Paciente &is::Paciente::operator=(const is::Paciente &p)
 bool is::Paciente::operator==(const is::Paciente & p) const
 {
 		return ((this->getNombre() == p.getNombre()) 
-              and (this->getApellidos() == t.getApellidos())
-                and (this->getTelefono()) == t.getTelefono()
-                  and (this->getDireccionPostal() == t.getDireccionPostal())
-                    and (this->getTarjetaSanitaria() == p.tarjetaSanitaria()));
+              and (this->getApellidos() == p.getApellidos())
+                and (this->getTelefono()) == p.getTelefono()
+                  and (this->getDireccionPostal() == p.getDireccionPostal())
+                    and (this->getFechaNacimiento() == p.getFechaNacimiento())
+                      and (this->getTarjetaSanitaria() == p.tarjetaSanitaria()));
 }
 
 bool is::Paciente::operator<(const is::Paciente & p) const
@@ -77,17 +79,47 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
 
   std::getline(i,p._direccionPostal);
 
+  std::getline(i,p._fechaNacimiento);
+
   std::getline(i,p._tarjetaSanitaria);
 
+  std::string aux;
+
   //Citas
-  for (int i = 0; i < ; i++)
-  {
-    /* code */
-  }
+  is::Cita c;
+  i>>c;
+
+  do{
+    std::getline(i,aux)
+    if (aux == "#")
+      break;
+    else{i>>c;}
+    
+  }while (aux == "----------")
   
   //Tratamientos
+  is::Tratamiento t;
+  i>>t;
+  
+  do{
+    std::getline(i,aux)
+    if (aux == "#")
+      break;
+    else{i>>t;}
+    
+  }while (aux == "----------")
   
   //Historiales
+  is::Historial h;
+  i>>h;
+  
+  do{
+    std::getline(i,aux)
+    if (aux == "#")
+      break;
+    else{i>>h;}
+    
+  }while (aux == "----------")
 
 /*  Forma alternativa para la lectura de datos numéricos usando una variable auxiliar: cadena
     std::string cadena;
@@ -104,12 +136,62 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
 }
 
 
-std::ostream &operator<<(std::ostream &o, is::Tratamiento const &t)
+std::ostream &operator<<(std::ostream &o, is::Paciente const &p)
 {
-  o << t._fechaInicio << std::endl;
-  o << t._fechaFin << std::endl;
-  o << t._periodicidad << std::endl;
-  o << t._dosis << std::endl;
+  o << p._nombre << std::endl;
+  o << p._apellidos << std::endl;
+  o << p._telefono << std::endl;
+  o << p._direccionPostal << std::endl;
+  o << p._fechaNacimiento << std::endl;
+  o << p._tarjetaSanitaria << std::endl;
+
+  //Citas
+  for (std::list<is::Cita>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
+  {
+    o << *it 
+    
+    if (it == p._citas.end())
+    {
+      o << "#"<<std::endl;
+    }
+    else
+    {
+      o << "----------" < std::endl;
+    }
+    
+  }
+
+  //Tratamientos
+  for (std::list<is::Cita>::iterator it = p._tratamientos.begin(); it != p._tratamientos.end(); ++it)
+  {
+    o << *it 
+    
+    if (it == p._tratamientos.end())
+    {
+      o << "#"<<std::endl;
+    }
+    else
+    {
+      o << "----------" << std::endl;
+    }
+    
+  }
+
+  //Historiales
+  for (std::list<is::Cita>::iterator it = p._historial.begin(); it != p._historial.end(); ++it)
+  
+    o << *it 
+    
+    if (it == p._historial.end())
+    {
+      o << "#"<<std::endl;
+    }
+    else
+    {
+      o << "----------" << std::endl;
+    }
+    
+  }
 
   // Se devuelve el flujo de salida
   return o;
