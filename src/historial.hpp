@@ -94,6 +94,9 @@ class Historial {
 
 		this->_motivoConsulta = motivoConsulta;
 
+		#ifndef NDEBUG
+			assert( getMotivoConsulta() == motivoConsulta );
+		#endif
 	}
 
 
@@ -109,6 +112,9 @@ class Historial {
 
 		this->_fecha = fecha;
 
+		#ifndef NDEBUG
+			assert( getFecha() == fecha );
+		#endif
 	}
 
     
@@ -141,7 +147,7 @@ class Historial {
 	        \post   Ninguna
 	        \return Devuelve true si el historial actual precede cronológicamente al historial pasado como argumento. False, en caso contrario.
     */
-	bool operator <(const Historial & h) const;
+	bool operator<(const Historial & h) const;
 
 
     /*!
