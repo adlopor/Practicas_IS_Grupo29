@@ -302,7 +302,7 @@ class Paciente:
  		/*!	
 			\name Otros métodos
 		*/
-
+	//Terminar esto!!
 	/*!
 		\brief  
   		\param  p: variable de la clase Paciente 
@@ -311,45 +311,139 @@ class Paciente:
 	*/
 	void buscarPaciente (is::Paciente p);
 
+	/*!
+		\brief  
+  		\param  p: variable de la clase Paciente 
+		\return No se devuelve ningún resultado
+  		\sa     
+	*/
+	void cargarPaciente (is::Paciente p);
+	/*!
+		\brief  
+  		\param  p: variable de la clase Paciente 
+		\return No se devuelve ningún resultado
+  		\sa     
+	*/
+	void guardarPaciente (is::Paciente p);
+
+	/*!
+		\brief  
+  		\param  p: variable de la clase Paciente 
+		\return No se devuelve ningún resultado
+  		\sa     
+	*/
+	void borrarPaciente (is::Paciente p);
+
 
  		/*!	
 			\name Otros métodos de la clase Cita
 		*/
 
-
 	/*!		
 		\brief  Buscar cita en la lista de citas del paciente
   		\param  c: variable de la clase Cita
-		\return No se devuelve ningún resultado
+		\return Si encuentra la cita devuelve true. En caso contrario, devuelve false.
   		
 	*/
-	void buscarCita (is::Cita &c);
+	bool buscarCita (is::Cita &c);
 
 	/*!		
-		\brief  Buscar cita en la lista de citas del paciente
-  		\param  c: variable de la clase Cita
-		\return No se devuelve ningún resultado
+		\brief  Carga la cita de la lista de citas en una clase de tipo Cita
+		\param  c: variable de la clase Cita
+		\return Devuelve la cita que se quiere cargar. Si no existe, la última cita de la lista, junto con un mensaje de error.
   		
 	*/
-	void cargarCita (is::Cita &c);
+	is::Cita cargarCita (is::Cita &c);
 
 	/*!		
-		\brief  Buscar cita en la lista de citas del paciente
+		\brief  Guarda la cita en la lista de citas del paciente y la reordena.
   		\param  c: variable de la clase Cita
 		\return No se devuelve ningún resultado
   		
 	*/
 	void guardarCita (is::Cita &c);
 
+	/*!		
+		\brief  Borra una cita de la lista de citas del paciente
+  		\param  c: variable de la clase Cita
+		\return No se devuelve ningún resultado
+  		
+	*/
+	void borrarCita (is::Cita &c);
+
+
  		/*!	
 			\name Otros métodos de la clase Tratamiento
 		*/
+
+	/*!		
+		\brief  Buscar tratamiento en la lista de tratamientos del paciente
+  		\param  t: variable de la clase Tratamiento.
+		\return Si encuentra el tratamiento devuelve true. En caso contrario, devuelve false.
+  		
+	*/
+	bool buscarTratamiento (is::Tratamiento &t);
+
+	/*!		
+		\brief  Carga el tratamiento de la lista de tratamientos en una clase de tipo Tratamiento
+		\param  t: variable de la clase Tratamiento
+		\return Devuelve el tratamiento que se quiere cargar. Si no existe, devuelve el último tratamiento de la lista, junto con un mensaje de error.
+  		
+	*/
+	is::Cita cargarTratamiento (is::Tratamiento &t);
+
+	/*!		
+		\brief  Guarda el tratamiento en la lista de tratamientos del paciente y la reordena.
+  		\param  t: variable de la clase Tratamiento
+		\return No se devuelve ningún resultado
+  		
+	*/
+	void guardarTratamiento (is::Tratamiento &t);
+
+	/*!		
+		\brief  Borra un tratamiento de la lista de tratamientos del paciente
+  		\param  t: variable de la clase Tratamiento
+		\return No se devuelve ningún resultado
+  		
+	*/
+	void borrarTratamiento (is::Tratamiento &t);
 
 
  		/*!	
 			\name Otros métodos de la clase Historial
 		*/
 
+	/*!		
+		\brief  Buscar historial en la lista de historiales del paciente
+  		\param  h: variable de la clase Historial.
+		\return Si encuentra el historial devuelve true. En caso contrario, devuelve false.
+  		
+	*/
+	bool buscarHistorial (is::Historial &h);
+
+	/*!		
+		\brief  Carga el historial de la lista de historiales en una clase de tipo Historial
+		\param  h: variable de la clase Historial
+		\return Devuelve el historial que se quiere cargar. Si no existe, devuelve el último historial de la lista, junto con un mensaje de error.
+  		
+	*/
+	is::Cita cargarHistorial (is::Historial &h);
+
+	/*!		
+		\brief  Guarda el historial en la lista de historiales del paciente y la reordena.
+  		\param  h: variable de la clase Historial
+		\return No se devuelve ningún resultado
+  		
+	*/
+	void guardarHistorial (is::Historial &h);
+
+	/*!		
+		\brief  Borra un historial de la lista de hsitoriales del paciente
+  		\param  h: variable de la clase Historial
+		\return No se devuelve ningún resultado
+  		
+	*/
+	void borrarHistorial (is::Historial &h);
 
 }; //Fin de la clase 
 
