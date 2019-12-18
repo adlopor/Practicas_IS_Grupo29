@@ -64,7 +64,7 @@ void is::Paciente::guardarCita (is::Cita &c)
 
   this->_citas.push_back(c);
   //Ordenar lista de citas
-  std::sort (this->_citas.begin(),this->_citas.end(), is::Cita::operator<)
+  std::sort (this->_citas.begin(),this->_citas.end(), is::Cita::operator<);
 }
 
 void is::Paciente::borrarCita (is::Cita &c)
@@ -129,7 +129,7 @@ void is::Paciente::guardarTratamiento (is::Tratamiento &t)
 
   this->_tratamiento.push_back(t);
   //Ordenar lista de citas
-  std::sort (this->_tratamientos.begin(),this->_tratamientoss.end(), is::Tratamiento::operator<)
+  std::sort (this->_tratamientos.begin(),this->_tratamientos.end(), is::Tratamiento::operator<);
 }
 
 void is::Paciente::borrarTratamiento (is::Tratamiento &t)
@@ -193,7 +193,7 @@ void is::Paciente::guardarHistorial (is::Historial &h)
 
   this->_historial.push_back(h);
   //Ordenar lista de citas
-  std::sort (this->_historial.begin(),this->_historial.end(), is::Historial::operator<)
+  std::sort (this->_historial.begin(),this->_historial.end(), is::Historial::operator<);
 }
 
 void is::Paciente::borrarHistorial (is::Historial &h)
@@ -261,7 +261,7 @@ bool is::Paciente::operator<(const is::Paciente & p) const
 	\brief Espacio de nombres para la asignatura Ingeniería del Software
 */
 namespace is{
-//Cómo hago para saber cuántas citas, tatamientos, historiales, leo por paciente?
+
 std::istream &operator>>(std::istream &i, is::Paciente &p)
 {
   std::getline(i,p._nombre);
@@ -313,16 +313,6 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
     else{i>>h;}
     
   }while (aux == "----------")
-
-/*  Forma alternativa para la lectura de datos numéricos usando una variable auxiliar: cadena
-    std::string cadena;
-
-    std::getline(i,cadena);
-    c._fecha= atof(cadena.c_str());
-    
-    std::getline(i,cadena);
-    c._hora = atof(cadena.c_str());
-*/
 
   // Se devuelve el flujo de entrada
   return i;

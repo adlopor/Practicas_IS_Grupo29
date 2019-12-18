@@ -11,13 +11,13 @@
 #define __CITA_HPP__
 
 #include <iostream>
-#include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
-#include <ctime>
+#include <cstdlib>
+#include <string>
+#include <fstream>
 #include <cassert>
 
-#include "macros.hpp" 
+#include "macros.hpp"
 
 /*!	
 	\namespace is
@@ -38,8 +38,8 @@ class Cita {
 	*/
 	private:
             			
-		 	std::string _fecha;		//!< \brief Cadena de caracteres en la que se almacena la fecha de la cita, estructura: aaaa/mm/dd.
-			std::string _hora;		//!< \brief Cadena de caracteres en la que se almacena la hora, estructura: hh/mm.
+	 	std::string _fecha;		//!< \brief Cadena de caracteres en la que se almacena la fecha de la cita, estructura: aaaa/mm/dd.
+		std::string _hora;		//!< \brief Cadena de caracteres en la que se almacena la hora, estructura: hh/mm.
 	
 
 	/*!		
@@ -127,7 +127,7 @@ class Cita {
 	        \return Devuelve una referencia al objeto actual
     */
 	Cita &operator=(const Cita &c);
-		
+	
     /*!		
 	        \brief  Operador que compara la igualdad lexicográfica por la fecha y hora de dos citas
 	        \param  c: objeto de tipo Cita
@@ -137,7 +137,6 @@ class Cita {
     */
 	bool operator==(const Cita & c) const;
 
-		
     /*!		
 	        \brief  Operador que compara la desigualdad lexicográfica por fecha y hora de dos citas
 	        \param  c: objeto de tipo Cita
@@ -162,7 +161,6 @@ class Cita {
     */
 	friend std::istream &operator>>(std::istream &i, Cita &c);
 
-
     /*!		
 	    	\brief  Operador de extracción
 	        \param  o: flujo de salida
@@ -172,7 +170,6 @@ class Cita {
 	        \return Devuelve el stream de salida
 	*/
 	friend std::ostream &operator<<(std::ostream &o, Cita const &c);
-
 
 // Fin de la clase Cita
 };

@@ -1,6 +1,6 @@
 /*!	
 
-	\file     asignatura.hpp
+	\file     paciente.hpp
 	\brief    Definición de la clase Paciente
 	\author   Adrián López Ortiz
 	\date     20/11/19
@@ -11,12 +11,17 @@
 #ifndef _PACIENTE_HPP_
 #define _PACIENTE_HPP_
 
-#include <cassert>
 #include <iostream>
+#include <stdio.h>
+#include <cstdlib>
 #include <string>
 #include <fstream>
-#include <stdio.h>
-#include <fstream>
+#include <cassert>
+
+#include "macros.hpp"
+#include "cita.hpp"
+#include "tratamiento.hpp"
+#include "historial.hpp"
 
 /*!	
 	\namespace is
@@ -32,7 +37,7 @@ namespace is{
 class Paciente: 
 {
 
-	/*!		
+	/*!
 		\name Métodos públicos de la clase Paciente
 	*/
 
@@ -297,43 +302,6 @@ class Paciente:
 	        \return Devuelve el stream de salida
 	*/
 	friend std::ostream &operator<<(std::ostream &o, Paciente const &p);
-
-
- 		/*!	
-			\name Otros métodos
-		*/
-	//Terminar esto!!
-	/*!
-		\brief  
-  		\param  p: variable de la clase Paciente 
-		\return No se devuelve ningún resultado
-  		\sa     
-	*/
-	void buscarPaciente (is::Paciente p);
-
-	/*!
-		\brief  
-  		\param  p: variable de la clase Paciente 
-		\return No se devuelve ningún resultado
-  		\sa     
-	*/
-	void cargarPaciente (is::Paciente p);
-	/*!
-		\brief  
-  		\param  p: variable de la clase Paciente 
-		\return No se devuelve ningún resultado
-  		\sa     
-	*/
-	void guardarPaciente (is::Paciente p);
-
-	/*!
-		\brief  
-  		\param  p: variable de la clase Paciente 
-		\return No se devuelve ningún resultado
-  		\sa     
-	*/
-	void borrarPaciente (is::Paciente p);
-
 
  		/*!	
 			\name Otros métodos de la clase Cita
