@@ -15,7 +15,7 @@
 
 #include "funcionesauxiliares.hpp"
 
-int ed::menu()
+int is::menu()
 {
  	int opcion, posicion;
 
@@ -33,13 +33,13 @@ int ed::menu()
 	std::cout << IWHITE;
 
 	LUGAR(posicion++,10);
-	std::cout << "[1]";
+	std::cout << "[1] Comprobar si la base de datos está vacía.";
 
 	LUGAR(posicion++,10);
-	std::cout << "[2]";
+	std::cout << "[2] Cargar la base de datos de un fichero.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[3] Guardar la base de datos actual en un fichero.";
 
 	LUGAR(posicion++,10);
 	std::cout << "";
@@ -76,4 +76,75 @@ int ed::menu()
     std::cin.ignore();
 
 	return opcion;
+}
+
+void is::comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes)
+{
+	LUGAR(8,10);
+	
+	std::cout << BIYELLOW << "La base de datos:" << std::endl;
+
+	if (listaPacientes.empty() == true)
+	{
+		std::cout << "está vacía" << RESET;
+		return true;
+	}
+	else{
+		std::cout << "no está vacía" << RESET;
+		return false;
+	}
+}
+
+bool is::cargarFichero(std::string const &nombreFichero, std::list<is::Paciente> &listaPacientes)
+{
+	std::ifstream f(nombreFichero.c_str());
+
+	is::Paciente aux;
+
+	if(!f)
+	{
+		return false;
+	}
+
+	while(f >> aux)
+	{		
+		listaPacientes.push_back(aux);
+	}
+
+	std::sort (listaPacientes.begin(),this->listaPacientes.end(), is::Paciente::operator<);
+
+	f.close();
+		
+	return true;
+}
+
+void ed::cargarListaPaciente(std::list<is::Paciente> &listaPacientes)
+{
+  	std::string nombreFichero;
+
+	LUGAR(8,10);
+	std::cout << BIYELLOW << "Introduce el nombre del archivo que contiene la BBDD: " << RESET;	
+	std::cin >> nombreFichero;
+
+	//Si el programa está cargado con otra BBDD, se borra y se carga la nueva BBDD.
+	if( !comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes))
+	{
+		listaPacientes.clear();
+	}
+
+	//Si el programa está vacío y no está cargado con otra BBDD, se carga el fichero introducido por pantalla.
+	else
+	{
+		
+	}
+	if( !cargarFichero(nombreFichero) )
+	{	
+		LUGAR(15,10);
+		std::cout << IRED << "No se pudo abrir el archivo." << RESET;
+	}
+	else
+	{
+		LUGAR(15,10);
+		std::cout << BIBLUE << "El archivo cargó correctamente." << RESET;	
+	}
 }

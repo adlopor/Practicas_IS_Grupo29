@@ -11,10 +11,10 @@
 #define __HISTORIAL_HPP__
 
 #include <iostream>
-#include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
-#include <ctime>
+#include <cstdlib>
+#include <string>
+#include <fstream>
 #include <cassert>
 
 #include "macros.hpp" 

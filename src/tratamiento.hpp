@@ -11,13 +11,13 @@
 #define __TRATAMIENTO_HPP__
 
 #include <iostream>
-#include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
-#include <ctime>
+#include <cstdlib>
+#include <string>
+#include <fstream>
 #include <cassert>
 
-#include "macros.hpp" 
+#include "macros.hpp"
 
 /*!	
 	\namespace is
@@ -37,11 +37,11 @@ class Tratamiento {
 		\name  Atributos y métodos privados 
 	*/
 	private:
-            			
-		 	std::string _fechaInicio;		//!< \brief Cadena de caracteres en la que se almacena la fecha de inicio del tratamiento, estructura: aaaa/mm/dd.
-			std::string _fechaFin;			//!< \brief Cadena de caracteres en la que se almacena la fecha de fin del tratamiento, estructura: aaaa/mm/dd.
-			std::string _periodicidad;		//!< \brief Cadena de caracteres en la que se almacena periodicidad del tratamiento.
-			std::string _dosis;				//!< \brief Cadena de caracteres en la que se almacena la dosis del tratamiento.
+
+	 	std::string _fechaInicio;		//!< \brief Cadena de caracteres en la que se almacena la fecha de inicio del tratamiento, estructura: aaaa/mm/dd.
+		std::string _fechaFin;			//!< \brief Cadena de caracteres en la que se almacena la fecha de fin del tratamiento, estructura: aaaa/mm/dd.
+		std::string _periodicidad;		//!< \brief Cadena de caracteres en la que se almacena periodicidad del tratamiento.
+		std::string _dosis;				//!< \brief Cadena de caracteres en la que se almacena la dosis del tratamiento.
 	
 
 	/*!		
