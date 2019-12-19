@@ -19,26 +19,48 @@
 //using namespace is;
 //using namespace std;
 
+/*
+ Definiciones de las funciones lectura y escritura de la clase Cita
+*/
+
+void is::Cita::leerCita()
+{
+	std::cout << "Introduce la fecha (yyyy/mm/dd): ";
+	std::getline(std::cin,this->_fecha);
+	std::cout << "Introduce la hora (hh:mm): ";
+	std::getline(std::cin,this->_hora);
+	
+	// Se elimina el salto de línea para evitar problemas en una posterior lectura de cadenas 
+	std::cin.ignore(); 
+}
+
+
+void is::Cita::escribirCita()
+{
+  std::cout << "Fecha: " << this->getFecha() << std::endl;
+  std::cout << "Hora: " << this->getHora() << std::endl;
+}
+
 /*!	
 	    \name Sobrecarga de operadores.
 */
 
 is::Cita &is::Cita::operator=(const is::Cita &c)
 {
-		// Se comprueba que no sean el mismo objeto
-		if (this != &c) 
-		{
-			this->setFecha(c.getFecha());
-			this->setHora(c.getHora());
-		}
+	// Se comprueba que no sean el mismo objeto
+	if (this != &c) 
+	{
+		this->setFecha(c.getFecha());
+		this->setHora(c.getHora());
+	}
 
     // Se devuelve el objeto actual
-		return *this;
+	return *this;
 }
 
 bool is::Cita::operator==(const is::Cita & c) const
 {
-		return (    (this->getFecha() == c.getFecha()) 
+	return (    (this->getFecha() == c.getFecha()) 
             and (this->getHora() == c.getHora()));
 }
 

@@ -1,5 +1,4 @@
 /*!	
-
 	\file     paciente.hpp
 	\brief    Definición de la clase Paciente
 	\author   Adrián López Ortiz
@@ -29,14 +28,11 @@
 */
 namespace is{
 /*!	
-
   \class Paciente
   \brief Representa la clase Paciente
-
 */
 class Paciente: 
 {
-
 	/*!
 		\name Métodos públicos de la clase Paciente
 	*/
@@ -49,18 +45,21 @@ class Paciente:
         std::string 				_direccionPostal;                               //!<  \brief Dirección Postal del paciente.
         std::string 				_fechaNacimiento;                               //!<  \brief Fecha de nacimiento del paciente.
         bool        				_tarjetaSanitaria;                              //!<  \brief Tarjeta sanitaria del paciente.
-        std::list<is::Cita> 		_citas;				                            //!<  \brief Vector de citas del paciente. 
-        std::list<is::Tratamiento> 	_tratamientos;				                    //!<  \brief Vector de tratamientos del paciente.
-        std::list<is::Historial> 	_historial;				                        //!<  \brief Vector de Historial del paciente.
+
+        std::list<is::Cita> 		_citas;				                            //!<  \brief Lista de citas del paciente. 
+        std::list<is::Tratamiento> 	_tratamientos;				                    //!<  \brief Lista de tratamientos del paciente.
+        std::list<is::Historial> 	_historial;				                        //!<  \brief Lista de los registros de historial del paciente.
 
 	/*!		
 		\name  Métodos públicos de la clase Paciente.
 	*/
+
   	public: 
 
 		/*!	
 			\name Constructor.
 		*/
+
 		Paciente(std::string const &nombre ="", std::string const &apellidos ="", std::string const &telefono ="", std::string const &direccionPostal ="", std::string const &fechaNacimiento ="", std::string const &tarjetaSanitaria ="")
 		{
 			this->setNombre(nombre);
@@ -69,7 +68,8 @@ class Paciente:
             this->setDireccionPostal(direccionPostal);
             this->setFechaNacimiento(fechaNacimiento);
             this->setTarjetaSanitaria(tarjetaSanitaria);
-			
+
+			this->		
   		}
 
 
@@ -85,7 +85,6 @@ class Paciente:
 		*/
 		inline int getNombre() const{return _nombre;}
 
-
 		/*!		
 			\brief  Devuelve los apellidos del paciente
 			\note   Función de tipo inline
@@ -93,7 +92,6 @@ class Paciente:
   			\sa     setApellidos
 		*/
 		inline std::string getApellidos() const{return _apellidos;}
-
 
         /*!		
 			\brief  Devuelve el número de teléfono del paciente
@@ -103,7 +101,6 @@ class Paciente:
 		*/
 		inline std::string getTelefono() const{return _telefono;}
 
-
         /*!		
 			\brief  Devuelve la dirección postal del paciente
 			\note   Función de tipo inline
@@ -111,7 +108,6 @@ class Paciente:
   			\sa     setDireccionPostal
 		*/
 		inline std::string getDireccionPostal() const{return _direccionPostal;}
-
 
         /*!		
 			\brief  Devuelve la fecha de nacimiento del paciente
@@ -135,6 +131,29 @@ class Paciente:
                 return false;
         }
 
+		/*!		
+			\brief  Devuelve la lista de citas del paciente
+			\note   Función de tipo inline
+			\return Listado de citas del paciente 
+  			\sa     setCitas
+		*/
+		inline std::list<is::Cita> getCitas() const{this->_citas;}
+
+		/*!		
+			\brief  Devuelve la lista de tratamientos del paciente
+			\note   Función de tipo inline
+			\return Listado de tratamientos del paciente 
+  			\sa     setTratamientos
+		*/
+		inline std::list<is::Tratamiento> getTratamientos() const{this->_tratamientos;}
+
+		/*!		
+			\brief  Devuelve la lista de historial del paciente
+			\note   Función de tipo inline
+			\return Listado de historial del paciente 
+  			\sa     setHistorial
+		*/
+		inline std::list<is::Historial> getHistorial() const{this->_historial;}
 
         /*!
 			\name Modificadores
@@ -238,12 +257,63 @@ class Paciente:
 			\return No se devuelve ningún resultado
   			\sa     getTarjetaSanitaria
 		*/
-		inline void setNombre(bool tarjetaSanitaria)
+		inline void setTarjetaSanitaria(bool tarjetaSanitaria)
 		{
    			_tarjetaSanitaria = tarjetaSanitaria;
 
 			#ifndef NDEBUG
 				assert( getTarjetaSanitaria() == tarjetaSanitaria );
+			#endif
+		}
+
+		/*!		
+			\brief  Modifica la lista de citas del paciente
+  			\note   Función inline
+			\param  citas: lista de citas
+  			\post   Deberá indicar si el paciente tiene un listado de citas y deberá de tener lo mismo a lo asignado
+			\return No se devuelve ningún resultado
+  			\sa     getCitas
+		*/
+		inline void setCitas( std::list<is::Citas> citas)
+		{
+   			this->_citas = citas;
+
+			#ifndef NDEBUG
+				assert( getCitas() == citas );
+			#endif
+		}
+
+		/*!		
+			\brief  Modifica la lista de tratamientos del paciente
+  			\note   Función inline
+			\param  tratamientos: lista de tratamientos
+  			\post   Deberá indicar si el paciente tiene un listado de tratamientos y deberá de tener lo mismo a lo asignado
+			\return No se devuelve ningún resultado
+  			\sa     getTratamientos
+		*/
+		inline void setTratamientos( std::list<is::Tratamiento> tratamientos)
+		{
+   			this->_tratamientos = tratamientos;
+
+			#ifndef NDEBUG
+				assert( getTratamientos() == tratamientos );
+			#endif
+		}
+
+				/*!		
+			\brief  Modifica el historial del paciente
+  			\note   Función inline
+			\param  historial: historial del paciente
+  			\post   Deberá indicar si el paciente tiene un historial y deberá de tener lo mismo a lo asignado
+			\return No se devuelve ningún resultado
+  			\sa     getHistorial
+		*/
+		inline void setHistorial( std::list<is::Historial> historial)
+		{
+   			this->_historial = historial;
+
+			#ifndef NDEBUG
+				assert( getHistorial() == historial );
 			#endif
 		}
 
@@ -412,6 +482,18 @@ class Paciente:
   		
 	*/
 	void borrarHistorial (is::Historial &h);
+
+
+		/*!	
+			\name Otros métodos de la clase Paciente
+		*/
+
+	/*!		
+	\brief Lee por teclado los datos de un paciente    
+	\pre   Ninguna
+	\post  Se modifican los atributos del paciente usando valores introducidos por el teclado
+	*/
+	void leerPaciente();
 
 }; //Fin de la clase 
 

@@ -22,7 +22,6 @@
 /*!	
 	\namespace is
 	\brief Espacio de nombres para la asignatura Ingeniería del Software
-
 */ 
 namespace is {
  
@@ -59,37 +58,37 @@ class Cita {
 
 
 	/*!	
-			\name Observadores.
+		\name Observadores.
 	*/
 
 	/*!		
-			\brief  Devuelve la fecha de la cita
-			\note   Función de tipo inline
-			\return Cadena que representa la fecha de la cita  
-  			\sa     setFecha
+		\brief  Devuelve la fecha de la cita
+		\note   Función de tipo inline
+		\return Cadena que representa la fecha de la cita  
+  		\sa     setFecha
 	*/
 	inline std::string getFecha() const{return _fecha;}
 
 	/*!		
-			\brief  Devuelve la hora de la cita
-			\note   Función de tipo inline
-			\return Cadena que representa la hora de la cita.  
-  			\sa     setHora
+		\brief  Devuelve la hora de la cita
+		\note   Función de tipo inline
+		\return Cadena que representa la hora de la cita.  
+  		\sa     setHora
 	*/
 	inline std::string getHora() const{return _hora;}
 
 
 	/*!	
-			\name Modificadores.
+		\name Modificadores.
 	*/
 
     /*!		
-			\brief  Modifica la fecha de la cita
-  			\note   Función de tipo inline
-			\param  fecha: cadena que será la nueva fecha de la cita
-  			\post   La fecha de la cita deberá ser la fecha pasada por argumento
-			\return No se devuelve ningún resultado
-  			\sa     getFecha
+		\brief  Modifica la fecha de la cita
+  		\note   Función de tipo inline
+		\param  fecha: cadena que será la nueva fecha de la cita
+  		\post   La fecha de la cita deberá ser la fecha pasada por argumento
+		\return No se devuelve ningún resultado
+  		\sa     getFecha
 	*/
 	inline void setFecha(std::string fecha){
 
@@ -100,11 +99,11 @@ class Cita {
 	}
 
     /*!		
-			\brief  Modifica la hora de la cita
-  			\param  hora: cadena que será la nueva hora de la cita
-  			\post   La hora de la cita deberá ser la hora pasada por argumento
-			\return No se devuelve ningún resultado
-  			\sa     getHora
+		\brief  Modifica la hora de la cita
+  		\param  hora: cadena que será la nueva hora de la cita
+  		\post   La hora de la cita deberá ser la hora pasada por argumento
+		\return No se devuelve ningún resultado
+  		\sa     getHora
 	*/
 	void setHora(std::string hora){
 
@@ -115,6 +114,25 @@ class Cita {
 		#endif
 
 	}
+	
+	/*!	
+		\name Funciones de E/S
+	*/
+		
+	/*!		
+		\brief Lee por teclado los datos de una cita    
+		\pre   Ninguna
+		\post  Se modifican los atributos de la cita usando valores introducidos por el teclado
+	*/
+	void leerCita();
+
+	
+	/*!		
+		\brief Imprime por pantalla los datos de una cita    
+		\pre   La cita debe tener sus datos cumplimentados
+		\post  Ninguna
+	*/
+	void escribirCita();
 
     /*!	
 	        \name Operadores

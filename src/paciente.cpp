@@ -28,15 +28,15 @@ bool is::Paciente::buscarCita (is::Cita &c)
 
   std::list<is::Cita>::iterator it;
   it = std::find(this->_citas.begin(), this->_citas.end(), c);
-  if (it == this->_citas.end())
+  if (it == c)
   {
-    cout << "FUNCION BUSCAR CITA -> No se ha encontrado la cita" << std::endl;
-    return false;
+     cout << "FUNCION BUSCAR CITA -> Se ha encontrado la cita" << std::endl;
+    return true;
   }
   else
   {
-    cout << "FUNCION BUSCAR CITA -> Se ha encontrado la cita" << std::endl;
-    return true;
+    cout << "FUNCION BUSCAR CITA -> No se ha encontrado la cita" << std::endl;
+    return false;
   }
 }
 
@@ -51,7 +51,6 @@ is::Cita is::Paciente::cargarCita (is::Cita &c)
     it = std::find(this->_citas.begin(), this->_citas.end(), c);
     return *it;
   }
-
   else
   {
     cout << "FUNCION CARGAR CITA -> No se ha podido cargar la cita, ya que no se ha podido encontrar dicha cita en la base de datos del paciente" << std::endl;
@@ -93,15 +92,16 @@ bool is::Paciente::buscarTratamiento (is::Tratamiento &t)
 
   std::list<is::Tratamiento>::iterator it;
   it = std::find(this->_tratamientos.begin(), this->_tratamientos.end(), t);
-  if (it == this->_tratamientos.end())
+
+  if (it == t)
   {
-    cout << "FUNCION BUSCAR TRATAMIENTO -> No se ha encontrado el tratamiento" << std::endl;
-    return false;
+     cout << "FUNCION BUSCAR TRATAMIENTO -> Se ha encontrado el tratamiento" << std::endl;
+    return true;
   }
   else
   {
-    cout << "FUNCION BUSCAR TRATAMIENTO -> Se ha encontrado el tratamiento" << std::endl;
-    return true;
+    cout << "FUNCION BUSCAR TRATAMIENTO -> No se ha encontrado el tratamiento" << std::endl;
+    return false;
   }
 }
 
@@ -135,7 +135,7 @@ void is::Paciente::guardarTratamiento (is::Tratamiento &t)
 void is::Paciente::borrarTratamiento (is::Tratamiento &t)
 {
 
-  if(buscarCita(t))
+  if(buscarTratamiento(t))
   {
     std::list<is::Tratamiento>::iterator it;
     it = std::find(this->_tratamientos.begin(), this->_tratamientos.end(), t);
@@ -157,15 +157,15 @@ bool is::Paciente::buscarHistorial (is::Historial &h)
 
   std::list<is::Historial>::iterator it;
   it = std::find(this->_historial.begin(), this->_historial.end(), h);
-  if (it == this->_historial.end())
+  if (it == h)
   {
-    cout << "FUNCION BUSCAR HISTORIAL -> No se ha encontrado el historial" << std::endl;
-    return false;
+     cout << "FUNCION BUSCAR HISTORIAL -> Se ha encontrado el historial" << std::endl;
+    return true;
   }
   else
   {
-    cout << "FUNCION BUSCAR HISTORIAL -> Se ha encontrado el historial" << std::endl;
-    return true;
+    cout << "FUNCION BUSCAR HISTORIAL -> No se ha encontrado el historial" << std::endl;
+    return false;
   }
 }
 
@@ -212,6 +212,41 @@ void is::Paciente::borrarHistorial (is::Historial &h)
   }
 }
 
+		/*!	
+			\name Otros métodos de la clase Paciente
+		*/
+
+void is::Paciente::leerPaciente()
+{
+  std::cout << "Introduce el nombre: ";
+  // Uso de getline para leer nombres compuestos separados por espacios
+  std::getline(std::cin,this->_nombre);
+
+  // Esta sentencia no permite leer nombres compuestos con espacios en blanco
+  // std::cin >> this->_nombre;
+
+  std::cout << "Introduce los apellidos: ";
+  // Uso de getline para leer los apellidos separados por espacios
+  std::getline(std::cin,this->_apellidos);
+
+
+  std::cout << "Introduce el telefono: ";
+  std::getline(std::cin,this->_telefono);
+
+  std::cout << "Introduce la direccion postal: ";
+  std::getline(std::cin,this->_direccionPostal);
+  
+  std::cout << "Introduce la fecha de nacimiento (yyyy/mm/dd): ";
+  std::getline(std::cin,this->_fechaNacimiento);
+   
+  std::cout << "Introduce la tarjeta sanitaria: ";
+  std::getline(std::cin,this->_tarjetaSanitaria);
+   
+  // Se elimina el salto de línea para evitar problemas en una posterior lectura de cadenas 
+  std::cin.ignore(); 
+}
+
+
 /*!	
 	    \name Sobrecarga de operadores.
 */
@@ -227,6 +262,11 @@ is::Paciente &is::Paciente::operator=(const is::Paciente &p)
     this->setDireccionPostal(p.getDireccionPostal());
     this->setFechaNacimiento(p.getFechaNacimiento())
     this->setTarjetaSanitaria(p.getTarjetaSanitaria());
+
+    this->setCitas(p.getCitas());
+    this->setTratamientos(p.getTratamientos());
+    this->setHistorial(p.getHistorial());
+
   }
 
   // Se devuelve el objeto actual
