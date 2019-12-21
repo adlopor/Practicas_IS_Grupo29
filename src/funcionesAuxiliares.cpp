@@ -240,7 +240,6 @@ void is::darAltaPaciente(std::list<is::Paciente> &listaPacientes)
 {
 	is::Paciente p;
 	p.leerPaciente();
-
 	listaPacientes.pushback(p);
 	listaPacientes.sort();
 }
