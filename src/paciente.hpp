@@ -16,7 +16,7 @@
 #include <string>
 #include <fstream>
 #include <cassert>
-
+#include <list>
 #include "macros.hpp"
 #include "cita.hpp"
 #include "tratamiento.hpp"
@@ -31,8 +31,7 @@ namespace is{
   \class Paciente
   \brief Representa la clase Paciente
 */
-class Paciente: 
-{
+class Paciente {
 	/*!
 		\name Métodos públicos de la clase Paciente
 	*/
@@ -63,7 +62,7 @@ class Paciente:
 			\name Constructor.
 		*/
 
-		Paciente(std::string const &nombre ="", std::string const &apellidos ="", std::string const &telefono ="", std::string const &direccionPostal ="", std::string const &fechaNacimiento ="", std::string const &tarjetaSanitaria ="")
+		Paciente(std::string const &nombre ="", std::string const &apellidos ="", std::string const &telefono ="", std::string const &direccionPostal ="", std::string const &fechaNacimiento ="", bool const &tarjetaSanitaria = true)
 		{
 			this->setNombre(nombre);
             this->setApellidos(apellidos);
@@ -84,7 +83,7 @@ class Paciente:
 			\return cadena que representa el nombre del paciente  
   			\sa     setNombre
 		*/
-		inline int getNombre() const{return _nombre;}
+		inline std::string getNombre() const{return _nombre;}
 
 		/*!
 			\brief  Devuelve los apellidos del paciente
@@ -138,7 +137,7 @@ class Paciente:
 			\return Listado de citas del paciente 
   			\sa     setCitas
 		*/
-		inline std::list<is::Cita> getCitas() const{this->_citas;}
+		inline std::list<is::Cita> getCitas() const{return this->_citas;}
 
 		/*!
 			\brief  Devuelve la lista de tratamientos del paciente
@@ -146,7 +145,7 @@ class Paciente:
 			\return Listado de tratamientos del paciente 
   			\sa     setTratamientos
 		*/
-		inline std::list<is::Tratamiento> getTratamientos() const{this->_tratamientos;}
+		inline std::list<is::Tratamiento> getTratamientos() const{return this->_tratamientos;}
 
 		/*!
 			\brief  Devuelve la lista de historial del paciente
@@ -154,7 +153,7 @@ class Paciente:
 			\return Listado de historial del paciente 
   			\sa     setHistorial
 		*/
-		inline std::list<is::Historial> getHistorial() const{this->_historial;}
+		inline std::list<is::Historial> getHistorial() const{return this->_historial;}
 
         /*!
 			\name Modificadores
@@ -275,7 +274,7 @@ class Paciente:
 			\return No se devuelve ningún resultado
   			\sa     getCitas
 		*/
-		inline void setCitas( std::list<is::Citas> citas)
+		inline void setCitas( std::list<is::Cita> citas)
 		{
    			this->_citas = citas;
 
@@ -459,7 +458,7 @@ class Paciente:
 		\return void
 		\sa		getIndiceListaTratamientos
     */
-	inline int setIndiceListaTratamientosBegin (){this->_indiceTratamientos = 0;}
+	inline void setIndiceListaTratamientosBegin (){this->_indiceTratamientos = 0;}
 
 	/*!
 	    \brief  Método que ajusta la posición en la que se encuentra el índice de la lista de tratamientos al final
@@ -467,7 +466,7 @@ class Paciente:
 		\return void
 		\sa		getIndiceListaTratamientos
     */
-	inline int setIndiceListaTratamientosEnd (){this->_indiceTratamientos = getTamanoListaTratamientos();}
+	inline void setIndiceListaTratamientosEnd (){this->_indiceTratamientos = getTamanoListaTratamientos();}
 	
 	/*!
 	    \brief  Método que avanza en una posición el índice de la lista de tratamientos
@@ -475,7 +474,7 @@ class Paciente:
 		\return void
 		\sa		getIndiceListaTratamientos
     */
-	inline void avanzarTratamientoAdelante (){this->_indiceTratamiento = (this->_indiceTratamiento + 1) % getTamanoListaTratamientos();}
+	inline void avanzarTratamientoAdelante (){this->_indiceTratamientos = (this->_indiceTratamientos + 1) % getTamanoListaTratamientos();}
 	
 	/*!
 	    \brief  Método que devuelve el tratamiento señalado por el índice del listado de tratamientos
@@ -559,7 +558,7 @@ class Paciente:
 		\return void
 		\sa		getIndiceListaHistorial
     */
-	inline int setIndiceListaHistorialBegin (){this->_indiceHistorial = 0;}
+	inline void setIndiceListaHistorialBegin (){this->_indiceHistorial = 0;}
 
 	/*!
 	    \brief  Método que ajusta la posición en la que se encuentra el índice de la lista de historial al final
@@ -567,7 +566,7 @@ class Paciente:
 		\return void
 		\sa		getIndiceListaHistorial
     */
-	inline int setIndiceListaHistorialEnd (){this->_indiceHistorial = getTamanoListaHistorial());}
+	inline void setIndiceListaHistorialEnd (){this->_indiceHistorial = getTamanoListaHistorial();}
 	
 	/*!
 	    \brief  Método que avanza en una posición el índice de la lista de historial
@@ -623,13 +622,19 @@ class Paciente:
 	*/
 		
 	/*!		
-		\brief Lee por teclado datos personales (nombre y apellidos) de un paciente    
+		\brief Lee por teclado algunos datos personales (nombre y apellidos) de un paciente    
+		\pre   Ninguna
+		\post  Se modifican los atributos del paciente usando valores introducidos por el teclado
+	*/
+	void leerNombreApellidosPaciente();
+
+	/*!		
+		\brief Lee por teclado los datos personales (todos los strings) de un paciente    
 		\pre   Ninguna
 		\post  Se modifican los atributos del paciente usando valores introducidos por el teclado
 	*/
 	void leerPaciente();
 
-	
 	/*!		
 		\brief Imprime por pantalla los datos personales (todos los strings) de un paciente
 		\pre   El paciente debe tener sus datos cumplimentados
@@ -690,7 +695,7 @@ class Paciente:
         \post   Se escriben los valores de los atributos del paciente en flujo de salida
         \return Devuelve el stream de salida
 	*/
-	friend std::ostream &operator<<(std::ostream &o, Paciente const &p);
+	friend std::ostream &operator<<(std::ostream &o, Paciente &p);
 
 
 }; //Fin de la clase 

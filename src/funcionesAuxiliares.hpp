@@ -31,7 +31,7 @@ namespace is
 		\return Booleano que devuelve True si la lista de pacientes del programa está vacía. False, en caso contrario
 		\sa		menu
 	*/
-	void comprobarListaPacientesVacia(std::list<is::Paciente> listaPacientes);
+	bool comprobarListaPacientesVacia(std::list<is::Paciente> listaPacientes);
 
 	/*! 
 		\brief  Función auxiliar que ayuda a la carga de la lista de pacientes desde un fichero de texto
@@ -65,17 +65,17 @@ namespace is
 		\return void
     	\sa     comprobarListaPacientesVacia grabarFichero
 	*/
-	void grabarListaPacientes(std::list<is::Paciente> &listaPacientes)
+	void grabarListaPacientes(std::list<is::Paciente> &listaPacientes);
 
 	/*! 
-		\brief  Mete a un paciente nuevo en la lista de pacientes
+		\brief  Añade a la lista de pacientes un nuevo paciente con sus datos personales (las citas, tratamiento e historial estará vacío, ya que es un paciente nuevo)
 		\param  listaPacientes: lista de Pacientes de la clínica
 		\return void
 	*/
 	void darAltaPaciente(std::list<is::Paciente> &listaPacientes);
 
 	/*!		
-		\brief  Buscar paciente en la lista de pacientes del paciente
+		\brief  Busca a un paciente en la lista de pacientes
   		\param  listaPacientes: lista de Pacientes de la clínica
 		\param	p: variable de clase Paciente
 		\return Si encuentra el paciente devuelve true. En caso contrario, devuelve false.
@@ -126,3 +126,7 @@ namespace is
   		
 	*/
 	void consultarCitasPaciente (std::list<is::Paciente> &listaPacientes);
+
+} // Fin del espacio de nombres is
+
+#endif // _PACIENTE_HPP_

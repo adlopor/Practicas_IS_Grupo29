@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <fstream>
 
-#include "funcionesauxiliares.hpp"
+#include "funcionesAuxiliares.hpp"
 
 int is::menu()
 {
@@ -42,25 +42,49 @@ int is::menu()
 	std::cout << "[3] Guardar la base de datos actual en un fichero.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[4] Mostrar el listado completo de pacientes de la clínica.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[5] Dar de alta a un nuevo paciente.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[6] Buscar a un paciente.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[7] Modificar los datos personales de un paciente.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[8] Eliminar a un paciente de la base de datos.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[9] Consultar el listado completo de citas de un paciente.";
 
 	LUGAR(posicion++,10);
-	std::cout << "";
+	std::cout << "[10] Añadir una nueva cita para un paciente";
+
+	LUGAR(posicion++,10);
+	std::cout << "[11] Modificar una cita exitente perteneciente a un paciente.";
+
+	LUGAR(posicion++,10);
+	std::cout << "[12] Cancelar una cita existente perteneciente a un paciente.";
+
+	LUGAR(posicion++,10);
+	std::cout << "[13] Consultar el listado completo de registros de historial de un paciente.";
+
+	LUGAR(posicion++,10);
+	std::cout << "[14] Añadir registro al historial de un paciente.";
+
+	LUGAR(posicion++,10);
+	std::cout << "[15] Consultar el listado de completo de tratamientos de un paciente.";
+
+	LUGAR(posicion++,10);
+	std::cout << "[16] Añadir un nuevo tratamiento para un paciente.";
+
+	LUGAR(posicion++,10);
+	std::cout << "[17] Cancelar un tratamiento ya existente perteneciente a un paciente.";
+
+	LUGAR(posicion++,10);
+	std::cout << "[18] Mostrar las citas de un día.";
 
 	std::cout << RESET;
 
@@ -78,7 +102,7 @@ int is::menu()
 	return opcion;
 }
 
-void is::comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes)
+bool is::comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes)
 {
 	LUGAR(8,10);
 	
@@ -90,17 +114,19 @@ void is::comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes)
 		return true;
 	}
 	else{
-		std::cout << "no está vacía" << RESET;
+		std::cout << "NO está vacía" << RESET;
 		return false;
 	}
 }
 
 bool is::cargarFichero(std::string const &nombreFichero, std::list<is::Paciente> &listaPacientes)
 {
+
+
 	std::ifstream f(nombreFichero.c_str());
 
 	is::Paciente aux;
-
+	
 	if(!f)
 	{
 		return false;
@@ -110,8 +136,8 @@ bool is::cargarFichero(std::string const &nombreFichero, std::list<is::Paciente>
 	{		
 		listaPacientes.push_back(aux);
 	}
-
-	std::sort (listaPacientes.begin(),this->listaPacientes.end(), is::Paciente::operator<);
+	//Ordenamos la lista de pacientes
+	listaPacientes.sort();
 
 	f.close();
 		
@@ -132,19 +158,15 @@ void is::cargarListaPacientes(std::list<is::Paciente> &listaPacientes)
 		listaPacientes.clear();
 	}
 
-	//Si el programa está vacío y no está cargado con otra BBDD, se carga el fichero introducido por pantalla.
+	if( !cargarFichero(nombreFichero, listaPacientes) )
+	{	
+		LUGAR(15,10);
+		std::cout << IRED << "No se pudo abrir el archivo." << RESET;
+	}
 	else
 	{
-		if( !cargarFichero(nombreFichero, listaPacientes) )
-		{	
-			LUGAR(15,10);
-			std::cout << IRED << "No se pudo abrir el archivo." << RESET;
-		}
-		else
-		{
-			LUGAR(15,10);
-			std::cout << BIBLUE << "El archivo cargó correctamente." << RESET;	
-		}
+		LUGAR(15,10);
+		std::cout << BIBLUE << "El archivo cargó correctamente." << RESET;	
 	}
 }
 
@@ -207,13 +229,8 @@ void is::imprimirListaPacientes(std::list<is::Paciente> &listaPacientes)
 		
 		for (std::list<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
 		{
-			std::cout << "\t"<<it->getNombre() << std::endl;
-			std::cout << "\t"<< it->getApellidos() << std::endl;
-  			std::cout << "\t"<< it->getTelefono() << std::endl;
-  			std::cout << "\t"<< it->getDireccionPostal() << std::endl;
-  			std::cout << "\t"<< it->getFechaNacimiento() << std::endl;
-  			std::cout << "\t"<< it->getTarjetaSanitaria() << std::endl;
-			std::cout << std::endl;
+			it->escribirPaciente();
+			std::cout << "----------" << std::endl;
 		}
 		
 	}
@@ -222,26 +239,25 @@ void is::imprimirListaPacientes(std::list<is::Paciente> &listaPacientes)
 void is::darAltaPaciente(std::list<is::Paciente> &listaPacientes)
 {
 	is::Paciente p;
-
 	p.leerPaciente();
 
 	listaPacientes.pushback(p);
-	std::sort (listaPacientes.begin(),this->listaPacientes.end(), is::Paciente::operator<);
+	listaPacientes.sort();
 }
 
 bool is::buscarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p)
 {
-    
+
   std::list<is::Paciente>::iterator it;
   it = std::find(listaPacientes.begin(), listaPacientes.end(), p);
   if (it == p)
   {
-	cout << "Se ha encontrado al paciente" << std::endl;
+	cout << "FUNCION BUSCAR PACIENTE -> Se ha encontrado al paciente." << std::endl;
     return true;
   }
   else
   {
-	cout << "No se ha encontrado al paciente" << std::endl;
+	cout << "FUNCION BUSCAR PACIENTE -> No se ha encontrado al paciente." << std::endl;
     return false;
   }
 }
@@ -260,7 +276,7 @@ is::Paciente is::cargarPaciente (std::list<is::Paciente> &listaPacientes, is::Pa
 
 	else
 	{
-	cout << "FUNCION CARGAR PACIENTE -> No se ha podido cargar el paciente, ya que no se ha podido encontrar dicho paciente en la base de datos" << std::endl;
+	cout << "FUNCION CARGAR PACIENTE -> No se ha podido cargar el paciente, ya que no se ha podido encontrar dicho paciente en la base de datos." << std::endl;
 	return *it;
 	}
 }
@@ -270,7 +286,7 @@ void is::guardarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente 
 
   listaPacientes.push_back(h);
   //Ordenar lista de pacientes
-  std::sort (listaPacientes.begin(),listaPacientes.end(), is::Paciente::operator<);
+  listaPacientes.sort();
 }
 
 void is::borrarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p);
@@ -281,6 +297,7 @@ void is::borrarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p
     std::list<is::Paciente>::iterator it;
     it = std::find(listaPacientes.begin(), this->listaPacientes.end(), p);
     listaPacientes.erase(it);
+	cout << "FUNCION BORRAR PACIENTE -> Paciente borrado con éxito." << std::endl;
   }
 
   else
@@ -296,8 +313,10 @@ void is::modificarPaciente (std::list<is::Paciente> &listaPacientes, is::Pacient
 	{
 		std::list<is::Paciente>::iterator it;
 		it = std::find(listaPacientes.begin(), this->listaPacientes.end(), p);
-		it.leerPaciente();
-		std::sort (listaPacientes.begin(),this->listaPacientes.end(), is::Paciente::operator<);
+		it->leerPaciente();
+
+		//Reordenar lista de pacientes
+		listaPacientes.sort();
 	}
 	else
 	{
@@ -309,15 +328,15 @@ void is::consultarCitasPaciente (std::list<is::Paciente> &listaPacientes, is::Pa
 {
 	if(buscarPaciente(listaPacientes, p)
 	{
-	//Primero, buscamos y cargamos al paciente(preguntar datos antes) 
-	p = cargarPaciente(listaPacientes, p);
+		//Primero, buscamos y cargamos al paciente(preguntar datos antes) 
+		p = cargarPaciente(listaPacientes, p);
 
-	int i=0;
-	for (std::list<is::Citas>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
-	{
-		i++;
-		std::cout << "Cita " << i << ":" << std::endl << *it;
-	}
+		int i=0;
+		for (std::list<is::Citas>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
+		{
+			i++;
+			std::cout << "Cita " << i << ":" << std::endl << *it;
+		}
 	}
 	else
 	{
