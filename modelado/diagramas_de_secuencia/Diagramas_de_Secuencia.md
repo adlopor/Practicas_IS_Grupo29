@@ -11,7 +11,7 @@
 ![Añadir información del historial clínico](11_anadir_informacion_del_historial_clinico.jpg)
 ![Visualizar tratamientos](12_visualizar_tratamientos.jpg)
 ![Añadir tratamiento](13_anadir_tratamiento.PNG)
-![Cancelar tratamiento](14_cancelar_tratamiento.jpg)
+![Cancelar tratamiento](14_Cancelar_tratamiento.jpg)
 ![Visualizar cita](15_visualizar_cita.jpg)
 
 
