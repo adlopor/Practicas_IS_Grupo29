@@ -153,7 +153,7 @@ bool is::Paciente::buscarTratamiento (is::Tratamiento &t)
 is::Tratamiento is::Paciente::cargarTratamiento (is::Tratamiento &t)
 {
 
-  if(buscarTratamiento(t))
+  if(buscarTratamiento(&t))
   {
     std::cout << "FUNCION CARGAR TRATAMIENTO -> Se ha encontrado el tratamiento y nos disponemos a cargarlo." << std::endl;
     return getCurrentTratamiento();
@@ -169,7 +169,7 @@ is::Tratamiento is::Paciente::cargarTratamiento (is::Tratamiento &t)
 void is::Paciente::guardarTratamiento (is::Tratamiento &t)
 {
   this->_tratamientos.push_back(t);
-  //Ordenar lista de citas
+  //Ordenar lista de tratamientos
   std::sort (this->_tratamientos.begin(),this->_tratamientos.end(), is::Tratamiento::operator<);
 }
 
@@ -199,23 +199,23 @@ void is::Paciente::borrarTratamiento (is::Tratamiento &t)
   setIndiceListaTratamientosBegin();
 }
 
+
 		/*!	
 			\name Otros métodos de la clase Historial
 		*/
-  
-  //ME QUEDO POR AQUI !!!!!!!!!!!!!!!!!!!!
-is::Tratamiento is::Paciente::getCurrentTratamientos()
-{
-	is::Tratamiento t;
 
-	if(estaVaciaListaTratamientos()){
-		std::cout << "FUNCION GET CURRENT TRATAMIENTO: Error la lista está vacía." << std::endl;
-		return t;
+is::Historial is::Paciente::getCurrentHistorial()
+{
+	is::Historial h;
+
+	if(estaVaciaListaHistorial()){
+		std::cout << "FUNCION GET CURRENT HISTORIAL: Error la lista está vacía." << std::endl;
+		return h;
 	}
 	else
 	{
-		std::list<is::Tratamiento>::iterator it = this->_tratamientos.begin();
-		for(int i=0; i < (this->_indiceTratamientos + 1); i++)
+		std::list<is::Historial>::iterator it = this->_historial.begin();
+		for(int i=0; i < (this->_indiceHistorial + 1); i++)
 		{
 			it++;
 		}
@@ -223,106 +223,106 @@ is::Tratamiento is::Paciente::getCurrentTratamientos()
 	}
 }
 
-bool is::Paciente::buscarTratamiento (is::Tratamiento &t)
+bool is::Paciente::buscarHistorial (is::Historial &h)
 {
   //Ponemos el índice de la lista al principio y la recorremos hacia delante de 1 en 1.
-  setIndiceListaTratamientosBegin();
+  setIndiceListaHistorialBegin();
   
-  for (getIndiceListaTratamientos(); getIndiceListaTratamientos() < getTamanoListaTratamientos(); avanzarTratamientoAdelante())
+  for (getIndiceListaHistorial(); getIndiceListaHistorial() < getTamanoListaHistorial(); avanzarHistorialAdelante())
   {
-    if(getCurrentTratamiento() == t)
+    if(getCurrentHistorial() == h)
     {
-      std::cout << "FUNCION BUSCAR TRATAMIENTO -> Se ha encontrado el tratamiento." << std::endl;
+      std::cout << "FUNCION BUSCAR HISTORIAL -> Se ha encontrado el registro de historial." << std::endl;
       return true;
     }
   }
   
-  std::cout << "FUNCION BUSCAR TRATAMIENTO -> No se ha encontrado el tratamiento." << std::endl;
+  std::cout << "FUNCION BUSCAR HISTORIAL -> No se ha encontrado el registro de historial." << std::endl;
   return false;
 }
 
-is::Tratamiento is::Paciente::cargarTratamiento (is::Tratamiento &t)
+is::Historial is::Paciente::cargarHistorial (is::Historial &h)
 {
 
-  if(buscarTratamiento(t))
+  if(buscarHistorial(&h))
   {
-    std::cout << "FUNCION CARGAR TRATAMIENTO -> Se ha encontrado el tratamiento y nos disponemos a cargarlo." << std::endl;
-    return getCurrentTratamiento();
+    std::cout << "FUNCION CARGAR HISTORIAL -> Se ha encontrado el registro de historial y nos disponemos a cargarlo." << std::endl;
+    return getCurrentHistorial();
   }
   else
   {
-    std::cout << "FUNCION CARGAR TRATAMIENTO -> No se ha podido cargar el tratamiento, ya que no se ha podido encontrar dicho tratamiento en la base de datos del paciente. Se devuelve el primero de la lista." << std::endl;
-    setIndiceListaTratamientosBegin();
-    return getCurrentTratamiento();
+    std::cout << "FUNCION CARGAR HISTORIAL -> No se ha podido cargar el historial, ya que no se ha podido encontrar dicho registro de historial en la base de datos del paciente. Se devuelve el primero de la lista." << std::endl;
+    setIndiceListaHistorialBegin();
+    return getCurrentHistorial();
   }
 }
 
-void is::Paciente::guardarTratamiento (is::Tratamiento &t)
+void is::Paciente::guardarHistorial (is::Historial &h)
 {
-  this->_tratamientos.push_back(t);
-  //Ordenar lista de citas
-  std::sort (this->_tratamientos.begin(),this->_tratamientos.end(), is::Tratamiento::operator<);
+  this->_historial.push_back(h);
+  //Ordenar lista de historial
+  std::sort (this->_historial.begin(),this->_historial.end(), is::Historial::operator<);
 }
 
-void is::Paciente::borrarTratamiento (is::Tratamiento &t)
+void is::Paciente::borrarHistorial (is::Historial &h)
 {
 
-  if(buscarTratamiento(t))
+  if(buscarHistorial(&h))
   {
-    std::cout << "FUNCION BORRAR TRATAMIENTO -> Se ha encontrado el tratamiento y nos disponemos a borrarlo." << std::endl;
-    for(std::list<is::Tratamiento>::iterator it = this->_tratamiento.begin(), int i=0; i < getIndiceListaTratamientos(); it++)
+    std::cout << "FUNCION BORRAR HISTORIAL -> Se ha encontrado el historial y nos disponemos a borrarlo." << std::endl;
+    for(std::list<is::Historial>::iterator it = this->_historial.begin(), int i=0; i < getIndiceListaHistorial(); it++)
     {i++;}
     
-    if(*it == getCurrentTratamiento()){
-      this->_tratamientos.erase(it);
-      std::cout << "FUNCION BORRAR TRATAMIENTO -> Tratamiento borrado con éxito." << std::endl;
+    if(*it == getCurrentHistorial()){
+      this->_historial.erase(it);
+      std::cout << "FUNCION BORRAR HISTORIAL -> Registro de historial borrado con éxito." << std::endl;
     }
     else
     {
-      std::cout << "FUNCION BORRAR TRATAMIENTO -> Error al borrar." << std::endl;
+      std::cout << "FUNCION BORRAR HISTORIAL -> Error al borrar." << std::endl;
     }
   }
 
   else
   {
-    cout << "FUNCION BORRAR TRATAMIENTO -> No se ha podido borrar el tratamiento, ya que no se ha podido encontrar dicho tratamiento en la base de datos del paciente." << std::endl;
+    cout << "FUNCION BORRAR HISTORIAL -> No se ha podido borrar el registro de historial, ya que no se ha podido encontrar dicho registro de historial en la base de datos del paciente. Movemos el cursor al principio de la lista." << std::endl;
   }
-  setIndiceListaTratamientosBegin();
+  setIndiceListaHistorialBegin();
 }
 
-
-		/*!	
-			\name Otros métodos de la clase Paciente
-		*/
+/*
+ Definiciones de las funciones lectura y escritura de la clase Cita
+*/
 
 void is::Paciente::leerPaciente()
 {
-  std::cout << "Introduce el nombre: ";
-  // Uso de getline para leer nombres compuestos separados por espacios
-  std::getline(std::cin,this->_nombre);
-
-  // Esta sentencia no permite leer nombres compuestos con espacios en blanco
-  // std::cin >> this->_nombre;
-
-  std::cout << "Introduce los apellidos: ";
-  // Uso de getline para leer los apellidos separados por espacios
-  std::getline(std::cin,this->_apellidos);
+	std::cout << "Introduce el nombre del paciente: ";
+	std::getline(std::cin,this->_nombre);
+	std::cout << "Ahora, introduce los apellidos: ";
+	std::getline(std::cin,this->_apellidos);
+	
+	// Se elimina el salto de línea para evitar problemas en una posterior lectura de cadenas 
+	std::cin.ignore(); 
+}
 
 
-  std::cout << "Introduce el telefono: ";
-  std::getline(std::cin,this->_telefono);
-
-  std::cout << "Introduce la direccion postal: ";
-  std::getline(std::cin,this->_direccionPostal);
-  
-  std::cout << "Introduce la fecha de nacimiento (yyyy/mm/dd): ";
-  std::getline(std::cin,this->_fechaNacimiento);
-   
-  std::cout << "Introduce la tarjeta sanitaria: ";
-  std::getline(std::cin,this->_tarjetaSanitaria);
-   
-  // Se elimina el salto de línea para evitar problemas en una posterior lectura de cadenas 
-  std::cin.ignore(); 
+void is::Cita::escribirCita()
+{
+  std::cout << "\t Datos personales del paciente: " << std::endl;
+  std::cout << "Nombre: " << this->getNombre() << std::endl;
+  std::cout << "Apellidos: " << this->getApellidos() << std::endl;
+  std::cout << "Teléfono: " << this->getTelefono() << std::endl;
+  std::cout << "Dirección Postal: " << this->getDireccionPostal() << std::endl;
+  std::cout << "Fecha de Nacimiento: " << this->getFechaNacimiento() << std::endl;
+  std::cout << "TarjetaSanitaria: ";
+  if (getTarjetaSanitaria())
+  {
+    std::cout << "Sí" << std::endl;
+  }
+  else
+  {
+    std:cout << "No" << std::endl;
+  }
 }
 
 
@@ -400,36 +400,48 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
   //Citas
   is::Cita c;
   i>>c;
-
+  this->_citas.push_back(c);
   do{
     std::getline(i,aux)
     if (aux == "#")
       break;
-    else{i>>c;}
+    else
+    {
+      i>>c;
+      this->_citas.push_back(c);
+    }
     
   }while (aux == "----------")
   
   //Tratamientos
   is::Tratamiento t;
   i>>t;
-  
+  this->_tratamientos.push_back(t);
   do{
     std::getline(i,aux)
     if (aux == "#")
       break;
-    else{i>>t;}
+    else
+    {
+      i>>t;
+      this->_tratamientos.push_back(t);
+    }
     
   }while (aux == "----------")
   
   //Historiales
   is::Historial h;
   i>>h;
-  
+  this->_historial.push_back(h);
   do{
     std::getline(i,aux)
     if (aux == "#")
       break;
-    else{i>>h;}
+    else
+    {
+      i>>h;
+      this->_historial.push_back(h);
+    }
     
   }while (aux == "----------")
 
@@ -450,7 +462,7 @@ std::ostream &operator<<(std::ostream &o, is::Paciente const &p)
   //Citas
   for (std::list<is::Cita>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
   {
-    o << *it 
+    o << *it;
     
     if (it == p._citas.end())
     {
@@ -466,7 +478,7 @@ std::ostream &operator<<(std::ostream &o, is::Paciente const &p)
   //Tratamientos
   for (std::list<is::Cita>::iterator it = p._tratamientos.begin(); it != p._tratamientos.end(); ++it)
   {
-    o << *it 
+    o << *it;
     
     if (it == p._tratamientos.end())
     {
@@ -482,7 +494,7 @@ std::ostream &operator<<(std::ostream &o, is::Paciente const &p)
   //Historiales
   for (std::list<is::Cita>::iterator it = p._historial.begin(); it != p._historial.end(); ++it)
   
-    o << *it 
+    o << *it;
     
     if (it == p._historial.end())
     {

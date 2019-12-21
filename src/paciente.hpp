@@ -50,8 +50,8 @@ class Paciente:
 		int _indiceTratamientos;
 		int _indiceHistorial;
         std::list<is::Cita> 		_citas;				                            //!<  \brief Lista de citas del paciente. 
-        std::list<is::Tratamiento> 	_tratamientos;				                    //!<  \brief Lista de tratamientos del paciente.
-        std::list<is::Historial> 	_historial;				                        //!<  \brief Lista de los registros de historial del paciente.
+        std::list<is::Tratamiento>	_tratamientos;				                    //!<  \brief Lista de tratamientos del paciente.
+        std::list<is::Historial>	_historial;				                        //!<  \brief Lista de los registros de historial del paciente.
 
 	/*!
 		\name  Métodos públicos de la clase Paciente.
@@ -618,6 +618,25 @@ class Paciente:
 	void borrarHistorial (is::Historial &h);
 
 
+	/*!	
+		\name Funciones de E/S
+	*/
+		
+	/*!		
+		\brief Lee por teclado datos personales (nombre y apellidos) de un paciente    
+		\pre   Ninguna
+		\post  Se modifican los atributos del paciente usando valores introducidos por el teclado
+	*/
+	void leerPaciente();
+
+	
+	/*!		
+		\brief Imprime por pantalla los datos personales (todos los strings) de un paciente
+		\pre   El paciente debe tener sus datos cumplimentados
+		\post  Ninguna
+	*/
+	void escribirPaciente();
+
     /*!	
         \name Operadores
     */
@@ -628,7 +647,7 @@ class Paciente:
         \post   El objeto actual es igual al objeto parámetro
         \return Devuelve una referencia al objeto actual
     */
-	Tratamiento &operator=(const Paciente &p);
+	Paciente &operator=(const Paciente &p);
 
     /*!		
         \brief  Operador que compara la igualdad lexicográfica por el nombre, los apellidos, teléfono, dirección postal, fecha de nacimiento y tarjeta sanitaria
@@ -673,16 +692,6 @@ class Paciente:
 	*/
 	friend std::ostream &operator<<(std::ostream &o, Paciente const &p);
 
-		/*!	
-			\name Otros métodos de la clase Paciente
-		*/
-
-	/*!		
-	\brief Lee por teclado los datos de un paciente    
-	\pre   Ninguna
-	\post  Se modifican los atributos del paciente usando valores introducidos por el teclado
-	*/
-	void leerPaciente();
 
 }; //Fin de la clase 
 

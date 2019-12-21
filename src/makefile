@@ -1,11 +1,12 @@
-OBJETOS = main.o funcionesAuxiliares.o paciente.o historial.o tratamiento.o cita.o
+OBJETOS = historial.o tratamiento.o cita.o paciente.o funcionesAuxiliares.o main.o
 
 CPPFLAGS = -c -g -Wall -ansi
 
-INCLUDES = 		main.hpp \
-				funcionesAuxiliares.hpp \
-				paciente.hpp
-				cita.hpp historial.hpp tratamiento.hpp \
+INCLUDES = 	funcionesAuxiliares.hpp \
+					paciente.hpp \
+						cita.hpp \
+						historial.hpp \
+						tratamiento.hpp \
 
 
 objetivo: main.exe
@@ -19,12 +20,15 @@ doc: Doxyfile
 		doxygen
 
 main.exe: $(OBJETOS)
-				g++ $(OBJETOS) -o main.exe
+						g++ $(OBJETOS) -o main.exe
 
-funcionesAuxiliares.o: funcionesAuxiliares.cpp funcionesAuxiliares.hpp paciente.hpp $(INCLUDES)
+main.o: main.cpp $(INCLUDES)
+						g++ $(CPPFLAGS) main.cpp
+								
+funcionesAuxiliares.o: funcionesAuxiliares.cpp funcionesAuxiliares.hpp paciente.hpp cita.hpp tratamiento.hpp historial.hpp
 							g++ $(CPPFLAGS) funcionesAuxiliares.cpp
 
-paciente.o: 	paciente.cpp paciente.hpp cita.hpp historial.hpp tratamiento.hpp $(INCLUDES)
+paciente.o: 	paciente.cpp paciente.hpp cita.hpp historial.hpp tratamiento.hpp
 					g++ $(CPPFLAGS) paciente.cpp
 
 cita.o: cita.cpp cita.hpp
