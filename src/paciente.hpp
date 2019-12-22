@@ -655,11 +655,11 @@ class Paciente {
 	Paciente &operator=(const Paciente &p);
 
     /*!		
-        \brief  Operador que compara la igualdad lexicográfica por el nombre, los apellidos, teléfono, dirección postal, fecha de nacimiento y tarjeta sanitaria
+        \brief  Operador que compara la igualdad lexicográfica por el nombre y los apellidos.
         \param  p: objeto de tipo Paciente
-        \pre    Ambas citas deben tener valores en los parámetros; el nombre, los apellidos, teléfono, dirección postal, fecha de nacimiento y tarjeta sanitaria
+        \pre    Ambas citas deben tener valores en los parámetros; el nombre y los apellidos nacimiento y tarjeta sanitaria
 		\post   Ninguna
-   	    \return Devuelve true si el nombre, los apellidos, teléfono, dirección postal , fecha de nacimiento y tarjeta sanitaria de los pacientes son iguales. False, en caso contrario
+   	    \return Devuelve true si el nombre y los apellidos de los pacientes son iguales. False, en caso contrario
     */
 	bool operator==(const Paciente &p) const;
 

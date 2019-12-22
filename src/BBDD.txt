@@ -1,0 +1,36 @@
+#
+Alicia
+Zamora Martin
+545345343
+Calle de la Ingenieria del Software, Bajo izquierda.
+false
+#
+#
+#
+----------
+2019/12/22
+18:45
+#
+2019/12/22
+false
+#
+#
+#
+2019/12/23
+12:00
+#
+#
+Dolor de espalda
+false
+#
+#
+#
+Adrian
+Lopez Ortiz
+123456789
+Calle de prueba, 4º A
+1996/03/12
+true
+#
+#
+#
