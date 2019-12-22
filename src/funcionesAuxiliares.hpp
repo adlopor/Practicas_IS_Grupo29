@@ -31,7 +31,7 @@ namespace is
 		\return Booleano que devuelve True si la lista de pacientes del programa está vacía. False, en caso contrario
 		\sa		menu
 	*/
-	bool comprobarListaPacientesVacia(std::list<is::Paciente> listaPacientes);
+	bool comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes);
 
 	/*! 
 		\brief  Función auxiliar que ayuda a la carga de la lista de pacientes desde un fichero de texto
@@ -71,25 +71,27 @@ namespace is
 		\brief  Añade a la lista de pacientes un nuevo paciente con sus datos personales (las citas, tratamiento e historial estará vacío, ya que es un paciente nuevo)
 		\param  listaPacientes: lista de Pacientes de la clínica
 		\return void
+		\sa buscarPaciente
 	*/
 	void darAltaPaciente(std::list<is::Paciente> &listaPacientes);
 
 	/*!		
 		\brief  Busca a un paciente en la lista de pacientes
   		\param  listaPacientes: lista de Pacientes de la clínica
-		\param	p: variable de clase Paciente
+		\param	p: variable de clase Paciente en la que se almacenará el paciente encontrado
 		\return Si encuentra el paciente devuelve true. En caso contrario, devuelve false.
 	*/
-	bool buscarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p);
+	bool buscarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
 
 	/*!		
 		\brief  Carga el paciente de la lista de pacientes en una clase de tipo Paciente
 		\param  listaPacientes: lista de Pacientes de la clínica
 		\param	p: variable de clase Paciente
-		\return Devuelve el paciente que se quiere cargar. Si no existe, devuelve el último historial de la lista, junto con un mensaje de error.
+		\return void
+		\sa buscarPaciente
   		
 	*/
-	is::Paciente cargarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p);
+	void cargarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
 
 	/*!		
 		\brief  Guarda el paciente en la lista de pacientes y la reordena.
@@ -98,7 +100,7 @@ namespace is
 		\return No se devuelve ningún resultado
   		
 	*/
-	void guardarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p);
+	void guardarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
 
 	/*!		
 		\brief  Borra un paciente de la lista de pacientes
@@ -107,25 +109,108 @@ namespace is
 		\return No se devuelve ningún resultado
   		
 	*/
-	void borrarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p);
+	void borrarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
+
+	/*!		
+		\brief  Muestra por pantalla el listado de pacientes de la clínica, (sus datos personales)
+  		\param  listaPacientes: lista de Pacientes de la clínica
+		\return void
+  		\sa 	buscarPaciente
+	*/
+	void escribirListaPacientes (std::list<is::Paciente> &listaPacientes);
 
 	/*!		
 		\brief  Modifica los datos personales de un paciente de la lista de pacientes
   		\param  listaPacientes: lista de Pacientes de la clínica
 		\param	p: variable de clase Paciente
 		\return No se devuelve ningún resultado
-  		
 	*/
-	void modificarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente p);
+	void modificarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
 
 	/*!		
-		\brief  Modifica los datos personales de un paciente de la lista de pacientes
+		\brief  Muestra el listado de citas de un paciente
   		\param  listaPacientes: lista de Pacientes de la clínica
 		\param	p: variable de clase Paciente
 		\return No se devuelve ningún resultado
-  		
 	*/
-	void consultarCitasPaciente (std::list<is::Paciente> &listaPacientes);
+	void consultarCitasPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
+
+	/*!
+		\brief	Busca a un paciente en el sistema y le añade una cita en caso de que este disponible para ese momento
+  		\param	listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de la clase Paciente
+		\param	c: variable de la clase Cita
+		\return	No se devuelve ningún resultado
+	*/
+	void anadirCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c);
+
+	/*!
+		\brief	Busca a un paciente en el sistema y le modifica una cita ya existente
+  		\param	listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de la clase Paciente
+		\param	c: variable de la clase Cita
+		\return	No se devuelve ningún resultado
+	*/
+	void modificarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c);
+
+	/*!
+		\brief	Busca a un paciente en el sistema y le borra/cancela una cita ya existente
+  		\param	listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de la clase Paciente
+		\param	c: variable de la clase Cita
+		\return	No se devuelve ningún resultado
+	*/
+	void cancelarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c);
+
+	/*!		
+		\brief  Muestra el listado de historiales de un paciente
+  		\param  listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de clase Paciente
+		\return No se devuelve ningún resultado
+	*/
+	void consultarHistorialPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
+
+	/*!
+		\brief	Busca a un paciente en el sistema y le añade un registro de historial en caso de que no exista ya
+  		\param	listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de la clase Paciente
+		\param	h: variable de la clase Historial
+		\return	No se devuelve ningún resultado	
+	*/
+	void anadirHistorial (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Historial &h);
+
+	/*!		
+		\brief  Muestra el listado de tratamientos de un paciente
+  		\param  listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de clase Paciente
+		\return No se devuelve ningún resultado
+	*/
+	void consultarTratamientosPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p);
+
+	/*!
+		\brief	Busca a un paciente en el sistema y le añade un tratamiento en caso de que no exista ya
+  		\param	listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de la clase Paciente
+		\param	t: variable de la clase Tratamiento
+		\return	No se devuelve ningún resultado
+	*/
+	void anadirTratamiento (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Tratamiento &t);
+	
+	/*!
+		\brief	Busca a un paciente en el sistema y le borra/cancela un tratamiento ya existente
+  		\param	listaPacientes: lista de Pacientes de la clínica
+		\param	p: variable de la clase Paciente
+		\param	t: variable de la clase Tratamiento
+		\return	No se devuelve ningún resultado
+	*/
+	void cancelarTratamiento (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Tratamiento &t);
+	
+	/*!
+		\brief	Muestra todas las citas de cada uno de los pacientes que pertenecen a la base de datos del sistema, que coincidan con la fecha introducida por teclado
+  		\param	listaPacientes: lista de Pacientes de la clínica
+		\return	No se devuelve ningún resultado
+	*/
+	void consultarCitasDiaPacientes (std::list<is::Paciente> &listaPacientes);
 
 } // Fin del espacio de nombres is
 

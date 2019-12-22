@@ -360,11 +360,11 @@ void is::Paciente::escribirPaciente()
   std::cout << "TarjetaSanitaria: ";
   if (getTarjetaSanitaria())
   {
-    std::cout << "Sí" << std::endl;
+    std::cout << "true" << std::endl;
   }
   else
   {
-    std::cout << "No" << std::endl;
+    std::cout << "false" << std::endl;
   }
 }
 
@@ -398,11 +398,7 @@ is::Paciente &is::Paciente::operator=(const is::Paciente &p)
 bool is::Paciente::operator==(const is::Paciente & p) const
 {
 	return ((this->getNombre() == p.getNombre()) 
-            and (this->getApellidos() == p.getApellidos())
-              and (this->getTelefono()) == p.getTelefono()
-                and (this->getDireccionPostal() == p.getDireccionPostal())
-                  and (this->getFechaNacimiento() == p.getFechaNacimiento())
-                    and (this->getTarjetaSanitaria() == p.getTarjetaSanitaria()));
+            and (this->getApellidos() == p.getApellidos()));
 }
 
 bool is::Paciente::operator<(const is::Paciente & p) const
@@ -452,52 +448,74 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
   std::string aux;
 
   //Citas
-  is::Cita c;
-  i>>c;
-  p._citas.push_back(c);
-  do{
+  if(p.getTamanoListaCitas() != 0)
+  {
+    is::Cita c;
+    i>>c;
+    p._citas.push_back(c);
+    do{
+      std::getline(i,aux);
+      if (aux == "#")
+        break;
+      else
+      {
+        i>>c;
+        p._citas.push_back(c);
+      }
+    }while (aux == "----------");
+  }
+  else
+  {
+    //Se lee el "#" que se pone al final de la lista, ya que no hay Citas
     std::getline(i,aux);
-    if (aux == "#")
-      break;
-    else
-    {
-      i>>c;
-      p._citas.push_back(c);
-    }
-    
-  }while (aux == "----------");
-  
+  }
+
   //Tratamientos
-  is::Tratamiento t;
-  i>>t;
-  p._tratamientos.push_back(t);
-  do{
-    std::getline(i,aux);
-    if (aux == "#")
-      break;
-    else
-    {
-      i>>t;
-      p._tratamientos.push_back(t);
-    }
+  if(p.getTamanoListaTratamientos() != 0)
+  {
+    is::Tratamiento t;
+    i>>t;
+    p._tratamientos.push_back(t);
+    do{
+      std::getline(i,aux);
+      if (aux == "#")
+        break;
+      else
+      {
+        i>>t;
+        p._tratamientos.push_back(t);
+      }
     
-  }while (aux == "----------");
+    }while (aux == "----------");
+  }
+  else
+  {
+    //Se lee el "#" que se pone al final de la lista, ya que no hay Tratamientos
+    std::getline(i,aux);
+  }
 
   //Historiales
-  is::Historial h;
-  i>>h;
-  p._historial.push_back(h);
-  do{
+  if(p.getTamanoListaHistorial() != 0)
+  {
+    is::Historial h;
+    i>>h;
+    p._historial.push_back(h);
+    do{
+      std::getline(i,aux);
+      if (aux == "#")
+        break;
+      else
+      {
+        i>>h;
+        p._historial.push_back(h);
+      } 
+    }while (aux == "----------");
+  }
+  else
+  {
+    //Se lee el "#" que se pone al final de la lista, ya que no hay registro de historial
     std::getline(i,aux);
-    if (aux == "#")
-      break;
-    else
-    {
-      i>>h;
-      p._historial.push_back(h);
-    }
-    
-  }while (aux == "----------");
+  }
 
   // Se devuelve el flujo de entrada
   return i;
@@ -522,51 +540,68 @@ std::ostream &operator<<(std::ostream &o, is::Paciente &p)
   }
 
   //Citas
-  for (std::list<is::Cita>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
+  if(!p.estaVaciaListaCitas())
   {
-    o << *it;
-    
-    if (it == p._citas.end())
+    for (std::list<is::Cita>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
     {
-      o << "#" << std::endl;
-    }
-    else
-    {
-      o << "----------" << std::endl;
-    }
+      o << *it;
     
+      if (it == p._citas.end())
+      {
+        o << "#" << std::endl;
+      }
+      else
+      {
+        o << "----------" << std::endl;
+      }
+    }  
   }
-
-  //Tratamientos
-  for (std::list<is::Tratamiento>::iterator it = p._tratamientos.begin(); it != p._tratamientos.end(); ++it)
+  else
   {
-    o << *it;
-    
-    if (it == p._tratamientos.end())
+    o << "#" << std::endl;
+  }
+  //Tratamientos
+  if(!p.estaVaciaListaTratamientos())
+  {
+    for (std::list<is::Tratamiento>::iterator it = p._tratamientos.begin(); it != p._tratamientos.end(); ++it)
     {
-      o << "#" << std::endl;
+      o << *it;
+
+      if (it == p._tratamientos.end())
+      {
+        o << "#" << std::endl;
+      }
+      else
+      {
+        o << "----------" << std::endl;
+      }  
     }
-    else
-    {
-      o << "----------" << std::endl;
-    }
-    
+  }
+  else
+  {
+    o << "#" << std::endl;
   }
 
   //Historiales
-  for (std::list<is::Historial>::iterator it = p._historial.begin(); it != p._historial.end(); ++it)
+  if(!p.estaVaciaListaHistorial())
   {
-    o << *it;
-    
-    if (it == p._historial.end())
+    for (std::list<is::Historial>::iterator it = p._historial.begin(); it != p._historial.end(); ++it)
     {
-      o << "#" << std::endl;
+      o << *it;
+      
+      if (it == p._historial.end())
+      {
+        o << "#" << std::endl;
+      }
+      else
+      {
+        o << "----------" << std::endl;
+      }
     }
-    else
-    {
-      o << "----------" << std::endl;
-    }
-    
+  }
+  else
+  {
+    o << "#" << std::endl;
   }
 
   // Se devuelve el flujo de salida
