@@ -22,6 +22,7 @@
 | +cargarHistorial : Función mediante la cuál se buscará el historial médico de un paciente dentro de la base de datos del sistema |
 | +guardarHistorial : Función mediante la cual se añadirá y guardará información en el  historial médico de uno de los pacientes dentro del sistema. |
 | +borrarHistorial : Función mediante la cual se buscará el historial médico de uno de los pacientes contenidos en la base de datos del sistema y se eliminará.|
+| +buscarHistorial : Función mediante la cual se buscará el historial médico de uno de los pacientes contenidos en la base de datos del sistema.|
 | +cargarTratamiento : Función mediante la cual se buscará un tratamiento dentro de la base de datos del sistema |
 | +guardarTratamiento : Función mediante la cual se añadirán nuevos tratamientos y se guardarán las actualizaciones que los tratamientos de un paciente dentro del sistema sufran |
 | +borrarTratamiento : Función mediante la cual se buscará uno de los tratamientos de la base de datos del sistema y se eliminará. |
