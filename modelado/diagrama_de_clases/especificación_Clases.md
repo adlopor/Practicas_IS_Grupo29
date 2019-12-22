@@ -14,6 +14,18 @@
 | +cargarPaciente : Función mediante la cual se buscará a un paciente dentro de la base de datos del sistema |
 | +guardarPaciente : Función mediante la cual se añadirán y guardarán los datos y actualizaciones de la información de un paciente dentro del sistema |
 | +borrarPaciente : Función mediante la cual se busca a un paciente dentro de la base de datos del sistema y se elimina |
+| +buscarPaciente : Función mediante la cual se busca a un paciente dentro de la base de datos del sistema.
+| +cargarCita : Función mediante la cuál se buscará la cita de un paciente dentro de la base de datos del sistema |
+| +guardarCita : Función mediante la cual se añadirán y guardarán los datos y actualizaciones de la cita de un paciente dentro del sistema |
+| +borrarCita :  Función mediante la cual se buscará una cita concreta mediante la fecha y se anulará. |
+| +buscarCita : Función mediante la cual se busca una cita dentro de la base de datos del sistema.
+| +cargarHistorial : Función mediante la cuál se buscará el historial médico de un paciente dentro de la base de datos del sistema |
+| +guardarHistorial : Función mediante la cual se añadirá y guardará información en el  historial médico de uno de los pacientes dentro del sistema. |
+| +borrarHistorial : Función mediante la cual se buscará el historial médico de uno de los pacientes contenidos en la base de datos del sistema y se eliminará.|
+| +cargarTratamiento : Función mediante la cual se buscará un tratamiento dentro de la base de datos del sistema |
+| +guardarTratamiento : Función mediante la cual se añadirán nuevos tratamientos y se guardarán las actualizaciones que los tratamientos de un paciente dentro del sistema sufran |
+| +borrarTratamiento : Función mediante la cual se buscará uno de los tratamientos de la base de datos del sistema y se eliminará. |
+| +buscarTratamiento : Función mediante la cual se busca un tratamiento dentro de la base de datos del sistema.
 
 
 
@@ -27,10 +39,7 @@
 | Datos | 
 | -fecha(string ) : Indica la fecha en la que la cita tendrá lugar |
 | -hora (string) : Indica la hora en la que la cita tendrá lugar |
-| Métodos | 
-| +cargarCita : Función mediante la cuál se buscará la cita de un paciente dentro de la base de datos del sistema |
-| +guardarCita : Función mediante la cual se añadirán y guardarán los datos y actualizaciones de la cita de un paciente dentro del sistema |
-| +borrarCita :  Función mediante la cual se buscará una cita concreta mediante la fecha y se anulará. |
+
 
 
 
@@ -41,10 +50,7 @@
 | Datos | 
 | -motivo de consulta (string ) : Indica el motivo por el que el paciente ha acudido a la clínica |
 | -fecha (string) : Indica la hora en la que la consulta ha tenido lugar |
-| Métodos | 
-| +cargarHistorial : Función mediante la cuál se buscará el historial médico de un paciente dentro de la base de datos del sistema |
-| +guardarHistorial : Función mediante la cual se añadirá y guardará información en el  historial médico de uno de los pacientes dentro del sistema. |
-| +borrarHistorial : Función mediante la cual se buscará el historial médico de uno de los pacientes contenidos en la base de datos del sistema y se eliminará.|
+
 
 
 
@@ -59,10 +65,7 @@
 | -fecha de fin (string) : fecha en la que el paciente termina de tomar el tratamiento |
 | -periocidad (string) : Indica cada cuanto tiempo el paciente debe tomar el tratamiento asignado |
 | -dosis(string) : Indica la dosis del tratamieto asignado que el paciente debe de tomar |
-| Métodos | 
-| +cargarTratamiento : Función mediante la cual se buscará un tratamiento dentro de la base de datos del sistema |
-| +guardarTratamiento : Función mediante la cual se añadirán nuevos tratamientos y se guardarán las actualizaciones que los tratamientos de un paciente dentro del sistema sufran |
-| +borrarTratamiento : Función mediante la cual se buscará uno de los tratamientos de la base de datos del sistema y se eliminará. |
+
 
 
 
