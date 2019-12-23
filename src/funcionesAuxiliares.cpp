@@ -106,15 +106,15 @@ bool is::comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes)
 {
 	LUGAR(8,10);
 	
-	std::cout << BIYELLOW << "La base de datos: ";
+	//std::cout << BIYELLOW << "La base de datos: ";
 
 	if (listaPacientes.empty() == true)
 	{
-		std::cout << "está vacía" << RESET <<std::endl;
+		//std::cout << "está vacía" << RESET <<std::endl;
 		return true;
 	}
 	else{
-		std::cout << "NO está vacía" << RESET << std::endl;
+		//std::cout << "NO está vacía" << RESET << std::endl;
 		return false;
 	}
 }
@@ -123,31 +123,37 @@ bool is::cargarFichero(std::string const &nombreFichero, std::list<is::Paciente>
 {
 	std::ifstream f(nombreFichero.c_str());
 
-	is::Paciente aux;
-	
-	if(!f)
+	is::Paciente p;
+	std::cout << "12";
+	if(!f.is_open())
 	{
+		std::cout <<"Error cargarfichero" << std::endl;
 		return false;
 	}
+	else{
+		std::cout << " 34";
+		int i= 1;
+		while(f >> p)
+		{	
+			std::cout << "i= " << i << std::endl;
+			i++;
+			listaPacientes.push_back(p);
+		}
+		//Ordenamos la lista de pacientes
+		//listaPacientes.sort();
 
-	while(f >> aux)
-	{		
-		listaPacientes.push_back(aux);
-	}
-	//Ordenamos la lista de pacientes
-	listaPacientes.sort();
-
-	f.close();
+		f.close();
 		
-	return true;
+		return true;
+	}
 }
 
 void is::cargarListaPacientes(std::list<is::Paciente> &listaPacientes)
 {
   	std::string nombreFichero;
 
-	LUGAR(12,10);
-	std::cout << BIYELLOW << "Introduce el nombre del archivo que contiene la BBDD: " << RESET;	
+	//LUGAR(12,10);
+	//std::cout << BIYELLOW << "Introduce el nombre del archivo que contiene la BBDD: " << RESET;	
 	std::cin >> nombreFichero;
 	std::cout << std::endl;
 
@@ -159,13 +165,13 @@ void is::cargarListaPacientes(std::list<is::Paciente> &listaPacientes)
 
 	if( !cargarFichero(nombreFichero, listaPacientes) )
 	{	
-		LUGAR(15,10);
-		std::cout << IRED << "No se pudo abrir el archivo." << RESET;
+		//LUGAR(15,10);
+		//std::cout << IRED << "No se pudo abrir el archivo." << RESET;
 	}
 	else
 	{
-		LUGAR(15,10);
-		std::cout << BIBLUE << "El archivo cargó correctamente." << RESET;	
+		//LUGAR(15,10);
+		//std::cout << BIBLUE << "El archivo cargó correctamente." << RESET;	
 	}
 }
 

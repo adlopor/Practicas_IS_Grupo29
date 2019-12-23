@@ -155,6 +155,7 @@ int main()
   
     if (opcion !=0)
     {
+        /*
 		 LUGAR(60,10);
 		 std::cout << "pulse ";
 		 std::cout << UNDERLINE;
@@ -165,7 +166,8 @@ int main()
 		 std::cout << INVERSE;
 		 std::cout << "continuar"; 
 		 std::cout << RESET;
-		 getchar();
+		 */
+         getchar();
 		 std::cout << CLEAR_SCREEN;
     }
 	  }while(opcion!=0);

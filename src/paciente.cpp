@@ -351,14 +351,14 @@ void is::Paciente::leerPaciente()
 
 void is::Paciente::escribirPaciente()
 {
-  std::cout << "\t Datos personales del paciente: " << std::endl;
+  std::cout << "---Datos personales del paciente: ---" << std::endl;
   std::cout << "Nombre: " << this->getNombre() << std::endl;
   std::cout << "Apellidos: " << this->getApellidos() << std::endl;
   std::cout << "Teléfono: " << this->getTelefono() << std::endl;
   std::cout << "Dirección Postal: " << this->getDireccionPostal() << std::endl;
   std::cout << "Fecha de Nacimiento: " << this->getFechaNacimiento() << std::endl;
   std::cout << "TarjetaSanitaria: ";
-  if (getTarjetaSanitaria())
+  if (this->getTarjetaSanitaria())
   {
     std::cout << "true" << std::endl;
   }
@@ -423,19 +423,26 @@ namespace is{
 std::istream &operator>>(std::istream &i, is::Paciente &p)
 {
   std::string s;
+  std::string aux;
 
+  //Leemos el inicio de Paciente "*"
+  std::getline(i,aux);
+  //std::cout << "Principio paciente: "<< aux << std::endl;
+
+  //Luego leemos los atributos de la clase Paciente (datos personales).
   std::getline(i,p._nombre);
-
+  //std::cout << "Nombre: " << p.getNombre() << std::endl;
   std::getline(i,p._apellidos);
-
+  //std::cout << "Apellidos: " << p.getApellidos() << std::endl;
   std::getline(i,p._telefono);
-
+  //std::cout << "Telefono: " << p.getTelefono() << std::endl;
   std::getline(i,p._direccionPostal);
-
+  //std::cout << "Direccion Postal: " << p.getDireccionPostal() << std::endl;
   std::getline(i,p._fechaNacimiento);
-
+  //std::cout << "Fecha de nacimiento: " << p.getFechaNacimiento() << std::endl;
   std::getline(i,s);
-  
+  //std::cout << "Tarjeta sanitaria: " << s << std::endl;
+  //std::cout << std::endl;
   if(s == "true")
   {
     p.setTarjetaSanitaria(true);
@@ -444,79 +451,79 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
   {
     p.setTarjetaSanitaria(false);
   }
-
-  std::string aux;
-
+  /*
+  std::cout << "-+-+-+-+" << std::endl;
+  p.escribirPaciente();
+  std::cout << "-+-+-+-+" << std::endl;
+  */
+  //Leemos el final de los datos personales "+-+-"
+  std::getline(i,aux);
+  //std::cout << "Final datos personales: " << aux << std::endl;
+  
+  std::getline(i,aux);
+  //std::cout << "aux:[" << aux << "]";
   //Citas
-  if(p.getTamanoListaCitas() != 0)
-  {
+  if(aux == "Citas:"){
     is::Cita c;
     i>>c;
+    //std::cout << "cita:" << std::endl << c;
     p._citas.push_back(c);
     do{
       std::getline(i,aux);
       if (aux == "#")
+      {
         break;
-      else
+      }
+      else if(aux == "----------")
       {
         i>>c;
         p._citas.push_back(c);
       }
     }while (aux == "----------");
   }
-  else
-  {
-    //Se lee el "#" que se pone al final de la lista, ya que no hay Citas
-    std::getline(i,aux);
-  }
-
+  
   //Tratamientos
-  if(p.getTamanoListaTratamientos() != 0)
-  {
+  
+  if(aux == "Tratamientos:"){
     is::Tratamiento t;
     i>>t;
+    //std::cout << "tratamiento:" << std::endl << t;
     p._tratamientos.push_back(t);
     do{
       std::getline(i,aux);
       if (aux == "#")
+      {
         break;
-      else
+      }
+      else if(aux == "----------")
       {
         i>>t;
         p._tratamientos.push_back(t);
       }
-    
     }while (aux == "----------");
-  }
-  else
-  {
-    //Se lee el "#" que se pone al final de la lista, ya que no hay Tratamientos
-    std::getline(i,aux);
   }
 
   //Historiales
-  if(p.getTamanoListaHistorial() != 0)
-  {
+  std::getline(i,aux);
+  if(aux == "Historial:"){
     is::Historial h;
     i>>h;
+    //std::cout << "historial:" << std::endl << h;
     p._historial.push_back(h);
     do{
       std::getline(i,aux);
       if (aux == "#")
+      {
         break;
-      else
+      }
+      else if(aux == "----------")
       {
         i>>h;
         p._historial.push_back(h);
-      } 
+      }
     }while (aux == "----------");
   }
-  else
-  {
-    //Se lee el "#" que se pone al final de la lista, ya que no hay registro de historial
-    std::getline(i,aux);
-  }
-
+  std::cout << "Final de operator>>\n";
   // Se devuelve el flujo de entrada
   return i;
 }

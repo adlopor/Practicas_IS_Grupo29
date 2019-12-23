@@ -31,10 +31,10 @@ void is::Tratamiento::leerTratamiento()
   std::cout << "Introduce la fecha de FIN del tratamiento (yyyy/mm/dd): ";
   std::getline(std::cin,this->_fechaFin);
 
-  std::cout << "Introduce la periodicidad del tratamiento : ";
+  std::cout << "Introduce la periodicidad del tratamiento (veces al dia): ";
   std::getline(std::cin,this->_periodicidad);
 
-  std::cout << "Introduce la dosis del tratamiento (yyyy/mm/dd): ";
+  std::cout << "Introduce la dosis del tratamiento (en gramos): ";
   std::getline(std::cin,this->_dosis);
 
   // Se elimina el salto de línea para evitar problemas en una posterior lectura de cadenas 
