@@ -1,9 +1,0 @@
-Adrian
-Lopez Ortiz
-123456789
-Calle de prueba, 4º A
-1996/03/12
-true
-#
-#
-#

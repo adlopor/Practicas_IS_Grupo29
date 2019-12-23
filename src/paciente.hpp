@@ -16,7 +16,9 @@
 #include <string>
 #include <fstream>
 #include <cassert>
-#include <list>
+#include <vector>
+#include <algorithm>
+
 #include "macros.hpp"
 #include "cita.hpp"
 #include "tratamiento.hpp"
@@ -48,9 +50,9 @@ class Paciente {
 		int _indiceCitas;
 		int _indiceTratamientos;
 		int _indiceHistorial;
-        std::list<is::Cita> 		_citas;				                            //!<  \brief Lista de citas del paciente. 
-        std::list<is::Tratamiento>	_tratamientos;				                    //!<  \brief Lista de tratamientos del paciente.
-        std::list<is::Historial>	_historial;				                        //!<  \brief Lista de los registros de historial del paciente.
+        std::vector<is::Cita> 			_citas;				                            //!<  \brief Lista de citas del paciente. 
+        std::vector<is::Tratamiento>	_tratamientos;				                    //!<  \brief Lista de tratamientos del paciente.
+        std::vector<is::Historial>		_historial;				                        //!<  \brief Lista de los registros de historial del paciente.
 
 	/*!
 		\name  Métodos públicos de la clase Paciente.
@@ -62,7 +64,7 @@ class Paciente {
 			\name Constructor.
 		*/
 
-		Paciente(std::string const &nombre ="", std::string const &apellidos ="", std::string const &telefono ="", std::string const &direccionPostal ="", std::string const &fechaNacimiento ="", bool const &tarjetaSanitaria = true)
+		Paciente(std::string const &nombre ="", std::string const &apellidos ="", std::string const &telefono ="", std::string const &direccionPostal ="", std::string const &fechaNacimiento ="", bool const &tarjetaSanitaria = true) 
 		{
 			this->setNombre(nombre);
             this->setApellidos(apellidos);
@@ -70,6 +72,10 @@ class Paciente {
             this->setDireccionPostal(direccionPostal);
             this->setFechaNacimiento(fechaNacimiento);
             this->setTarjetaSanitaria(tarjetaSanitaria);
+
+			this->setIndiceListaCitasBegin();
+			this->setIndiceListaTratamientosBegin();
+			this->setIndiceListaHistorialBegin();
 		}
 
 
@@ -137,7 +143,7 @@ class Paciente {
 			\return Listado de citas del paciente 
   			\sa     setCitas
 		*/
-		inline std::list<is::Cita> getCitas() const{return this->_citas;}
+		inline std::vector<is::Cita> getCitas() const{return this->_citas;}
 
 		/*!
 			\brief  Devuelve la lista de tratamientos del paciente
@@ -145,7 +151,7 @@ class Paciente {
 			\return Listado de tratamientos del paciente 
   			\sa     setTratamientos
 		*/
-		inline std::list<is::Tratamiento> getTratamientos() const{return this->_tratamientos;}
+		inline std::vector<is::Tratamiento> getTratamientos() const{return this->_tratamientos;}
 
 		/*!
 			\brief  Devuelve la lista de historial del paciente
@@ -153,7 +159,7 @@ class Paciente {
 			\return Listado de historial del paciente 
   			\sa     setHistorial
 		*/
-		inline std::list<is::Historial> getHistorial() const{return this->_historial;}
+		inline std::vector<is::Historial> getHistorial() const{return this->_historial;}
 
         /*!
 			\name Modificadores
@@ -274,7 +280,7 @@ class Paciente {
 			\return No se devuelve ningún resultado
   			\sa     getCitas
 		*/
-		inline void setCitas( std::list<is::Cita> citas)
+		inline void setCitas( std::vector<is::Cita> citas)
 		{
    			this->_citas = citas;
 
@@ -291,7 +297,7 @@ class Paciente {
 			\return No se devuelve ningún resultado
   			\sa     getTratamientos
 		*/
-		inline void setTratamientos( std::list<is::Tratamiento> tratamientos)
+		inline void setTratamientos( std::vector<is::Tratamiento> tratamientos)
 		{
    			this->_tratamientos = tratamientos;
 
@@ -308,7 +314,7 @@ class Paciente {
 			\return No se devuelve ningún resultado
   			\sa     getHistorial
 		*/
-		inline void setHistorial( std::list<is::Historial> historial)
+		inline void setHistorial( std::vector<is::Historial> historial)
 		{
    			this->_historial = historial;
 
@@ -373,7 +379,7 @@ class Paciente {
 		\return void
 		\sa		getIndiceListaCitas
     */
-	inline void avanzarCitaAdelante (){this->_indiceCitas = (this->_indiceCitas + 1) % getTamanoListaCitas();}
+	inline void avanzarCitaAdelante (){this->_indiceCitas = (this->_indiceCitas + 1);}
 	
 	/*!
 	    \brief  Método que devuelve la cita señalada por el índice del listado de citas
@@ -474,7 +480,7 @@ class Paciente {
 		\return void
 		\sa		getIndiceListaTratamientos
     */
-	inline void avanzarTratamientoAdelante (){this->_indiceTratamientos = (this->_indiceTratamientos + 1) % getTamanoListaTratamientos();}
+	inline void avanzarTratamientoAdelante (){this->_indiceTratamientos = (this->_indiceTratamientos + 1);}
 	
 	/*!
 	    \brief  Método que devuelve el tratamiento señalado por el índice del listado de tratamientos
@@ -574,7 +580,7 @@ class Paciente {
 		\return void
 		\sa		getIndiceListaHistorial
     */
-	inline void avanzarHistorialAdelante (){this->_indiceHistorial = (this->_indiceHistorial + 1) % getTamanoListaHistorial();}
+	inline void avanzarHistorialAdelante (){this->_indiceHistorial = (this->_indiceHistorial + 1);}
 	
 	/*!
 	    \brief  Método que devuelve el historial señalado por el índice del listado de historiales

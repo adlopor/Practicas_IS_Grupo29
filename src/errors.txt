@@ -1,4 +1,0 @@
-No carga citas,tratamientos e historial del paciente. Tampoco añade nuevas.
-Violacion de segmento al borrar un paciente.
-
-
