@@ -28,7 +28,7 @@
 */
 int main()
 {
-	std::list<is::Paciente> listaPacientes;
+	std::vector<is::Paciente> listaPacientes;
     is::Paciente p;
     is::Cita c;
     is::Tratamiento t;
@@ -155,8 +155,8 @@ int main()
   
     if (opcion !=0)
     {
-        /*
-		 LUGAR(60,10);
+        
+		 LUGAR(70,10);
 		 std::cout << "pulse ";
 		 std::cout << UNDERLINE;
 		 std::cout << IYELLOW;
@@ -166,7 +166,7 @@ int main()
 		 std::cout << INVERSE;
 		 std::cout << "continuar"; 
 		 std::cout << RESET;
-		 */
+		 
          getchar();
 		 std::cout << CLEAR_SCREEN;
     }

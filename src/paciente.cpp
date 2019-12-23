@@ -33,17 +33,27 @@ is::Cita is::Paciente::getCurrentCita()
 	}
 	else
 	{
-		std::list<is::Cita>::iterator it = this->_citas.begin();
-		for(int i=0; i < (this->_indiceCitas + 1); i++)
+		std::vector<is::Cita>::iterator it;
+		int i=0;
+
+    for( it = this->_citas.begin(); it != this->_citas.end() ; ++it,++i)
 		{
-			it++;
-		}
-		return *it;
-	}
+      if(this->getIndiceListaCitas() == i)
+      {
+			  return *it;
+      }
+    }
+
+    return *it;
+  }
 }
 
 bool is::Paciente::buscarCita (is::Cita &c)
 {
+  if(getTamanoListaCitas() == 0){
+    std::cout << "La lista de citas está vacía." << std::endl;
+    return false;
+  }
   //Ponemos el índice de la lista al principio y la recorremos hacia delante de 1 en 1.
   setIndiceListaCitasBegin();
   
@@ -62,7 +72,6 @@ bool is::Paciente::buscarCita (is::Cita &c)
 
 is::Cita is::Paciente::cargarCita (is::Cita &c)
 {
-
   if(buscarCita(c))
   {
     std::cout << "FUNCION CARGAR CITA -> Se ha encontrado la cita y nos disponemos a cargarla." << std::endl;
@@ -79,9 +88,18 @@ is::Cita is::Paciente::cargarCita (is::Cita &c)
 void is::Paciente::guardarCita (is::Cita &c)
 {
   this->_citas.push_back(c);
-  //Ordenar lista de citas
-  //std::sort (this->_citas.begin(),this->_citas.end(), is::Cita::operator<);
-  this->_citas.sort();
+  /*
+  std::vector<is::Cita>::iterator it;
+  std::cout<< "Imprimimos la lista de citas: " << std::endl;
+  int i = 1;
+  for( it = this->_citas.begin(); it != this->_citas.end() ; ++it, ++i)
+  {
+    std::cout << "Cita [" << i << "]:" << std::endl << *it << std::endl;
+  }
+  */
+
+  std::cout << "FUNCION GUARDAR CITA-> Cita guardada con éxito." <<std::endl;
+  //std::sort(this->_citas.begin(), this->_citas.end());
 }
 
 void is::Paciente::borrarCita (is::Cita &c)
@@ -89,28 +107,22 @@ void is::Paciente::borrarCita (is::Cita &c)
 
   if(buscarCita(c))
   {
-    std::list<is::Cita>::iterator it = this->_citas.begin();
-    int i = 0;
+    std::vector<is::Cita>::iterator it = (this->_citas.begin() + this->getIndiceListaCitas());
     std::cout << "FUNCION BORRAR CITA -> Se ha encontrado la cita y nos disponemos a borrarla." << std::endl;
-    for(it = this->_citas.begin(), i=0; i < getIndiceListaCitas(); it++)
-    {i++;}
+    this->_citas.erase(it);
+    std::cout << "FUNCION BORRAR CITA -> Cita borrada con éxito." << std::endl;
+    //std::sort(this->_citas.begin(), this->_citas.end());
+    this->setIndiceListaCitasBegin();
+    return;
     
-    if(*it == getCurrentCita()){
-      this->_citas.erase(it);
-      std::cout << "FUNCION BORRAR CITA -> Cita borrada con éxito." << std::endl;
-    }
-    else
-    {
-      std::cout << "FUNCION BORRAR CITA -> Error al borrar." << std::endl;
-    }
   }
-
   else
   {
     std::cout << "FUNCION BORRAR CITA -> No se ha podido borrar la cita, ya que no se ha podido encontrar dicha cita en la base de datos del paciente." << std::endl;
   }
-  setIndiceListaCitasBegin();
+  this->setIndiceListaCitasBegin();
 }
+
 
   /*!
     \name Métodos del Listado de Tratamientos
@@ -118,7 +130,7 @@ void is::Paciente::borrarCita (is::Cita &c)
 
 is::Tratamiento is::Paciente::getCurrentTratamiento()
 {
-	is::Tratamiento t;
+ 	is::Tratamiento t;
 
 	if(estaVaciaListaTratamientos()){
 		std::cout << "FUNCION GET CURRENT TRATAMIENTO: Error la lista está vacía." << std::endl;
@@ -126,13 +138,19 @@ is::Tratamiento is::Paciente::getCurrentTratamiento()
 	}
 	else
 	{
-		std::list<is::Tratamiento>::iterator it = this->_tratamientos.begin();
-		for(int i=0; i < (this->_indiceTratamientos + 1); i++)
+		std::vector<is::Tratamiento>::iterator it;
+		int i=0;
+
+    for( it = this->_tratamientos.begin(); it != this->_tratamientos.end() ; ++it,++i)
 		{
-			it++;
-		}
-		return *it;
-	}
+      if(this->getIndiceListaTratamientos() == i)
+      {
+			  return *it;
+      }
+    }
+
+    return *it;
+  }
 }
 
 bool is::Paciente::buscarTratamiento (is::Tratamiento &t)
@@ -172,38 +190,36 @@ is::Tratamiento is::Paciente::cargarTratamiento (is::Tratamiento &t)
 void is::Paciente::guardarTratamiento (is::Tratamiento &t)
 {
   this->_tratamientos.push_back(t);
-  //Ordenar lista de tratamientos
-  //std::sort (this->_tratamientos.begin(),this->_tratamientos.end(), is::Tratamiento::operator<);
-  this->_tratamientos.sort();
+  std::cout << "FUNCION GUARDAR TRATAMIENTO -> Tratamiento guardado con éxito." <<std::endl;
+  std::sort(this->_tratamientos.begin(), this->_tratamientos.end());
 }
 
 void is::Paciente::borrarTratamiento (is::Tratamiento &t)
 {
-
   if(buscarTratamiento(t))
   {
-
+    std::vector<is::Tratamiento>::iterator it = this->_tratamientos.begin();
+    this->setIndiceListaTratamientosBegin();
     std::cout << "FUNCION BORRAR TRATAMIENTO -> Se ha encontrado el tratamiento y nos disponemos a borrarlo." << std::endl;
-    int i = 0;
-    std::list<is::Tratamiento>::iterator it = this->_tratamientos.begin();
-    for(it = this->_tratamientos.begin(), i=0; i < getIndiceListaTratamientos(); it++)
-    {i++;}
-    
-    if(*it == getCurrentTratamiento()){
-      this->_tratamientos.erase(it);
-      std::cout << "FUNCION BORRAR TRATAMIENTO -> Tratamiento borrado con éxito." << std::endl;
-    }
-    else
+  
+    for(it = this->_tratamientos.begin(); it < this->_tratamientos.end(); it++)
     {
-      std::cout << "FUNCION BORRAR TRATAMIENTO -> Error al borrar." << std::endl;
+      if (*it == t)
+      {
+        this->_tratamientos.erase(it);
+        std::sort(this->_tratamientos.begin(), this->_tratamientos.end());
+        std::cout << "FUNCION BORRAR TRATAMIENTO -> Tratamiento borrado con éxito." << std::endl;
+        this->setIndiceListaTratamientosBegin();
+        return;
+      }
     }
+  std::cout << "FUNCION BORRAR TRATAMIENTO -> Error al borrar." << std::endl;
   }
-
   else
   {
     std::cout << "FUNCION BORRAR TRATAMIENTO -> No se ha podido borrar el tratamiento, ya que no se ha podido encontrar dicho tratamiento en la base de datos del paciente." << std::endl;
   }
-  setIndiceListaTratamientosBegin();
+  this->setIndiceListaTratamientosBegin();
 }
 
 
@@ -221,13 +237,19 @@ is::Historial is::Paciente::getCurrentHistorial()
 	}
 	else
 	{
-		std::list<is::Historial>::iterator it = this->_historial.begin();
-		for(int i=0; i < (this->_indiceHistorial + 1); i++)
+		std::vector<is::Historial>::iterator it;
+		int i=0;
+
+    for( it = this->_historial.begin(); it != this->_historial.end() ; ++it,++i)
 		{
-			it++;
-		}
-		return *it;
-	}
+      if(this->getIndiceListaHistorial() == i)
+      {
+			  return *it;
+      }
+    }
+
+    return *it;
+  }
 }
 
 bool is::Paciente::buscarHistorial (is::Historial &h)
@@ -239,26 +261,25 @@ bool is::Paciente::buscarHistorial (is::Historial &h)
   {
     if(getCurrentHistorial() == h)
     {
-      std::cout << "FUNCION BUSCAR HISTORIAL -> Se ha encontrado el registro de historial." << std::endl;
+      std::cout << "FUNCION BUSCAR HISTORIAL -> Se ha encontrado el historial." << std::endl;
       return true;
     }
   }
   
-  std::cout << "FUNCION BUSCAR HISTORIAL -> No se ha encontrado el registro de historial." << std::endl;
+  std::cout << "FUNCION BUSCAR HISTORIAL -> No se ha encontrado el historial." << std::endl;
   return false;
 }
 
 is::Historial is::Paciente::cargarHistorial (is::Historial &h)
 {
-
   if(buscarHistorial(h))
   {
-    std::cout << "FUNCION CARGAR HISTORIAL -> Se ha encontrado el registro de historial y nos disponemos a cargarlo." << std::endl;
+    std::cout << "FUNCION CARGAR HISTORIAL -> Se ha encontrado el historial y nos disponemos a cargarlo." << std::endl;
     return getCurrentHistorial();
   }
   else
   {
-    std::cout << "FUNCION CARGAR HISTORIAL -> No se ha podido cargar el historial, ya que no se ha podido encontrar dicho registro de historial en la base de datos del paciente. Se devuelve el primero de la lista." << std::endl;
+    std::cout << "FUNCION CARGAR HISTORIAL -> No se ha podido cargar el historial, ya que no se ha podido encontrar dicho historial en la base de datos del paciente. Se devuelve el primero de la lista." << std::endl;
     setIndiceListaHistorialBegin();
     return getCurrentHistorial();
   }
@@ -267,37 +288,36 @@ is::Historial is::Paciente::cargarHistorial (is::Historial &h)
 void is::Paciente::guardarHistorial (is::Historial &h)
 {
   this->_historial.push_back(h);
-  //Ordenar lista de historial
-  //std::sort (this->_historial.begin(),this->_historial.end(), is::Historial::operator<);
-  this->_historial.sort();
+  std::cout << "FUNCION GUARDAR HISTORIAL-> Historial guardado con éxito." <<std::endl;
+  std::sort(this->_historial.begin(), this->_historial.end());
 }
 
 void is::Paciente::borrarHistorial (is::Historial &h)
 {
-
   if(buscarHistorial(h))
   {
+    std::vector<is::Historial>::iterator it = this->_historial.begin();
+    this->setIndiceListaHistorialBegin();
     std::cout << "FUNCION BORRAR HISTORIAL -> Se ha encontrado el historial y nos disponemos a borrarlo." << std::endl;
-    std::list<is::Historial>::iterator it = this->_historial.begin();
-    int i = 0;
-    for(it = this->_historial.begin(), i=0; i < getIndiceListaHistorial(); it++)
-    {i++;}
-    
-    if(*it == getCurrentHistorial()){
-      this->_historial.erase(it);
-      std::cout << "FUNCION BORRAR HISTORIAL -> Registro de historial borrado con éxito." << std::endl;
-    }
-    else
+  
+    for(it = this->_historial.begin(); it < this->_historial.end(); it++)
     {
-      std::cout << "FUNCION BORRAR HISTORIAL -> Error al borrar." << std::endl;
+      if (*it == h)
+      {
+        this->_historial.erase(it);
+        std::cout << "FUNCION BORRAR HISTORIAL -> Historial borrado con éxito." << std::endl;
+        std::sort(this->_historial.begin(), this->_historial.end());
+        this->setIndiceListaHistorialBegin();
+        return;
+      }
     }
+  std::cout << "FUNCION BORRAR HISTORIAL -> Error al borrar." << std::endl;
   }
-
   else
   {
-    std::cout << "FUNCION BORRAR HISTORIAL -> No se ha podido borrar el registro de historial, ya que no se ha podido encontrar dicho registro de historial en la base de datos del paciente. Movemos el cursor al principio de la lista." << std::endl;
+    std::cout << "FUNCION BORRAR HISTORIAL -> No se ha podido borrar el historial, ya que no se ha podido encontrar dicho historial en la base de datos del paciente." << std::endl;
   }
-  setIndiceListaHistorialBegin();
+  this->setIndiceListaHistorialBegin();
 }
 
 /*
@@ -370,7 +390,7 @@ void is::Paciente::escribirPaciente()
 
 
 /*!	
-	    \name Sobrecarga de operadores.
+    \name Sobrecarga de operadores.
 */
 
 is::Paciente &is::Paciente::operator=(const is::Paciente &p)
@@ -460,7 +480,7 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
   std::getline(i,aux);
   //std::cout << "Final datos personales: " << aux << std::endl;
   
-  std::getline(i,aux);
+  while (std::getline(i,aux)){
   //std::cout << "aux:[" << aux << "]";
   //Citas
   if(aux == "Citas:"){
@@ -468,8 +488,9 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
     i>>c;
     //std::cout << "cita:" << std::endl << c;
     p._citas.push_back(c);
+    //std::cout << "Tamano citas: [" << p._citas.size() << "]" << std::endl;
     do{
-      std::getline(i,aux);
+    std::getline(i,aux);
       if (aux == "#")
       {
         break;
@@ -481,9 +502,8 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
       }
     }while (aux == "----------");
   }
-  
+
   //Tratamientos
-  
   if(aux == "Tratamientos:"){
     is::Tratamiento t;
     i>>t;
@@ -504,7 +524,6 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
   }
 
   //Historiales
-  std::getline(i,aux);
   if(aux == "Historial:"){
     is::Historial h;
     i>>h;
@@ -523,7 +542,9 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
       }
     }while (aux == "----------");
   }
-  std::cout << "Final de operator>>\n";
+std::cout<<"aux: "<<aux<<std::endl;
+}//endwhile
+  //std::cout << "Final de operator>>\n";
   // Se devuelve el flujo de entrada
   return i;
 }
@@ -531,6 +552,7 @@ std::istream &operator>>(std::istream &i, is::Paciente &p)
 
 std::ostream &operator<<(std::ostream &o, is::Paciente &p)
 {
+  o << "*" << std::endl;
   o << p._nombre << std::endl;
   o << p._apellidos << std::endl;
   o << p._telefono << std::endl;
@@ -545,15 +567,18 @@ std::ostream &operator<<(std::ostream &o, is::Paciente &p)
   {
     o << "false" << std::endl;
   }
+  o << "+-+-" << std::endl;
 
   //Citas
   if(!p.estaVaciaListaCitas())
   {
-    for (std::list<is::Cita>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
+    o << "Citas:" << std::endl;
+
+    for (std::vector<is::Cita>::iterator it = p._citas.begin(); it != p._citas.end(); ++it)
     {
       o << *it;
     
-      if (it == p._citas.end())
+      if (it +1 == p._citas.end())
       {
         o << "#" << std::endl;
       }
@@ -563,18 +588,17 @@ std::ostream &operator<<(std::ostream &o, is::Paciente &p)
       }
     }  
   }
-  else
-  {
-    o << "#" << std::endl;
-  }
+
   //Tratamientos
   if(!p.estaVaciaListaTratamientos())
   {
-    for (std::list<is::Tratamiento>::iterator it = p._tratamientos.begin(); it != p._tratamientos.end(); ++it)
+    o << "Tratamientos:" << std::endl;
+    
+    for (std::vector<is::Tratamiento>::iterator it = p._tratamientos.begin(); it != p._tratamientos.end(); ++it)
     {
       o << *it;
 
-      if (it == p._tratamientos.end())
+      if (it + 1 == p._tratamientos.end())
       {
         o << "#" << std::endl;
       }
@@ -584,19 +608,16 @@ std::ostream &operator<<(std::ostream &o, is::Paciente &p)
       }  
     }
   }
-  else
-  {
-    o << "#" << std::endl;
-  }
-
+  
   //Historiales
   if(!p.estaVaciaListaHistorial())
   {
-    for (std::list<is::Historial>::iterator it = p._historial.begin(); it != p._historial.end(); ++it)
+    o << "Historial:" << std::endl;
+    for (std::vector<is::Historial>::iterator it = p._historial.begin(); it != p._historial.end(); ++it)
     {
       o << *it;
       
-      if (it == p._historial.end())
+      if (it + 1 == p._historial.end())
       {
         o << "#" << std::endl;
       }
@@ -605,10 +626,6 @@ std::ostream &operator<<(std::ostream &o, is::Paciente &p)
         o << "----------" << std::endl;
       }
     }
-  }
-  else
-  {
-    o << "#" << std::endl;
   }
 
   // Se devuelve el flujo de salida

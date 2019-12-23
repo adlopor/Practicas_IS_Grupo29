@@ -102,58 +102,59 @@ int is::menu()
 	return opcion;
 }
 
-bool is::comprobarListaPacientesVacia(std::list<is::Paciente> &listaPacientes)
+bool is::comprobarListaPacientesVacia(std::vector<is::Paciente> &listaPacientes)
 {
 	LUGAR(8,10);
 	
-	//std::cout << BIYELLOW << "La base de datos: ";
+	std::cout << BIYELLOW << "La base de datos: ";
 
 	if (listaPacientes.empty() == true)
 	{
-		//std::cout << "está vacía" << RESET <<std::endl;
+		std::cout << "está vacía" << RESET <<std::endl;
 		return true;
 	}
 	else{
-		//std::cout << "NO está vacía" << RESET << std::endl;
+		std::cout << "NO está vacía" << RESET << std::endl;
 		return false;
 	}
 }
 
-bool is::cargarFichero(std::string const &nombreFichero, std::list<is::Paciente> &listaPacientes)
+bool is::cargarFichero(std::string const &nombreFichero, std::vector<is::Paciente> &listaPacientes)
 {
 	std::ifstream f(nombreFichero.c_str());
 
 	is::Paciente p;
-	std::cout << "12";
+	
 	if(!f.is_open())
 	{
 		std::cout <<"Error cargarfichero" << std::endl;
 		return false;
 	}
 	else{
-		std::cout << " 34";
+	
 		int i= 1;
+		f >> p;
+		listaPacientes.push_back(p);
+	
 		while(f >> p)
 		{	
-			std::cout << "i= " << i << std::endl;
+	
 			i++;
 			listaPacientes.push_back(p);
 		}
 		//Ordenamos la lista de pacientes
-		//listaPacientes.sort();
-
+		//std::sort (listaPacientes.begin(), listaPacientes.end());
 		f.close();
-		
 		return true;
 	}
 }
 
-void is::cargarListaPacientes(std::list<is::Paciente> &listaPacientes)
+void is::cargarListaPacientes(std::vector<is::Paciente> &listaPacientes)
 {
   	std::string nombreFichero;
 
-	//LUGAR(12,10);
-	//std::cout << BIYELLOW << "Introduce el nombre del archivo que contiene la BBDD: " << RESET;	
+	LUGAR(12,10);
+	std::cout << BIYELLOW << "Introduce el nombre del archivo que contiene la BBDD: " << RESET;	
 	std::cin >> nombreFichero;
 	std::cout << std::endl;
 
@@ -165,17 +166,17 @@ void is::cargarListaPacientes(std::list<is::Paciente> &listaPacientes)
 
 	if( !cargarFichero(nombreFichero, listaPacientes) )
 	{	
-		//LUGAR(15,10);
-		//std::cout << IRED << "No se pudo abrir el archivo." << RESET;
+		LUGAR(15,10);
+		std::cout << IRED << "No se pudo abrir el archivo." << RESET;
 	}
 	else
 	{
-		//LUGAR(15,10);
-		//std::cout << BIBLUE << "El archivo cargó correctamente." << RESET;	
+		LUGAR(15,10);
+		std::cout << BIBLUE << "El archivo cargó correctamente." << RESET;	
 	}
 }
 
-bool is::grabarFichero(std::string const &nombreFichero, std::list<is::Paciente> &listaPacientes)
+bool is::grabarFichero(std::string const &nombreFichero, std::vector<is::Paciente> &listaPacientes)
 {
 	std::ofstream f(nombreFichero.c_str());
 
@@ -185,7 +186,7 @@ bool is::grabarFichero(std::string const &nombreFichero, std::list<is::Paciente>
 	}
 	else
 	{
-		for (std::list<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
+		for (std::vector<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
 		{
 			f << *it;
 		}
@@ -196,7 +197,7 @@ bool is::grabarFichero(std::string const &nombreFichero, std::list<is::Paciente>
 	}
 }
 
-void is::grabarListaPacientes(std::list<is::Paciente> &listaPacientes)
+void is::grabarListaPacientes(std::vector<is::Paciente> &listaPacientes)
 {
   	std::string nombreFichero;
 
@@ -219,7 +220,7 @@ void is::grabarListaPacientes(std::list<is::Paciente> &listaPacientes)
 	}
 }
 
-void is::escribirListaPacientes(std::list<is::Paciente> &listaPacientes)
+void is::escribirListaPacientes(std::vector<is::Paciente> &listaPacientes)
 {
 
 	if(comprobarListaPacientesVacia(listaPacientes))
@@ -229,10 +230,10 @@ void is::escribirListaPacientes(std::list<is::Paciente> &listaPacientes)
 	}
 	else
 	{
-		LUGAR(15,10);
+		LUGAR(20,10);
 		std::cout << BIYELLOW<< "-----LISTA DE PACIENTES-----" << RESET;
 		
-		for (std::list<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
+		for (std::vector<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
 		{
 			it->escribirPaciente();
 			std::cout << "----------" << std::endl;
@@ -241,10 +242,10 @@ void is::escribirListaPacientes(std::list<is::Paciente> &listaPacientes)
 	}
 }
 
-void is::darAltaPaciente(std::list<is::Paciente> &listaPacientes)
+void is::darAltaPaciente(std::vector<is::Paciente> &listaPacientes)
 {
 	is::Paciente p;
-	
+	LUGAR(30,10);
 	std::cout <<"En primer lugar tendrás que introducir el nombre y apellidos del paciente que quieres dar de alta. En caso de que este no pertenezca a la base de datos, podrás rellenar su ficha de forma satisfactoria." <<std::endl;
 
 	if(buscarPaciente(listaPacientes, p))
@@ -255,25 +256,25 @@ void is::darAltaPaciente(std::list<is::Paciente> &listaPacientes)
 	else
 	{
 		p.leerPaciente();
-		listaPacientes.push_back(p);
-		listaPacientes.sort();
-		std::cout << "FUNCION DAR ALTA PACIENTE -> Paciente dado de alta en el sistema con éxito." << std::endl; 
+		guardarPaciente(listaPacientes,p);
+		//std::sort(listaPacientes.begin(), listaPacientes.end());
+		
 	}
 }
 
-bool is::buscarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+bool is::buscarPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
 
 	if(!comprobarListaPacientesVacia(listaPacientes))
 	{
 		p.leerNombreApellidosPaciente();
-
-		for (std::list<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
+		for (std::vector<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
 		{
 			if (*it == p)
 			{
 				std::cout << "FUNCION BUSCAR PACIENTE -> Se ha encontrado al paciente." << std::endl;
 				p = *it;
+				//std::cout << p;
 				return true;
 			}
 			else
@@ -291,7 +292,7 @@ bool is::buscarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &
 	return false;//Para los avisos
 }
 
-void is::cargarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+void is::cargarPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
 	if(buscarPaciente(listaPacientes, p)){
 		std::cout << "FUNCION CARGAR PACIENTE -> Paciente cargado con éxito." << std::endl;
@@ -302,23 +303,26 @@ void is::cargarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &
 	}
 }
 
-void is::guardarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+void is::guardarPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
-  listaPacientes.push_back(p);
-  //Ordenar lista de pacientes
-  listaPacientes.sort();
+	listaPacientes.push_back(p);
+	LUGAR(32,10);
+		std::cout << BIBLUE << "El paciente se guardó correctamente." << RESET;
+	//std::sort(listaPacientes.begin(),listaPacientes.end());
 }
 
-void is::borrarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+void is::borrarPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
 	if(buscarPaciente(listaPacientes, p))
 	{
-		for (std::list<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
+		for (std::vector<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
 		{
 			if (p == *it)
 			{
 				listaPacientes.erase(it);
 				std::cout << "FUNCION BORRAR PACIENTE -> El paciente se ha borrado con éxito." << std::endl;
+				//std::sort(listaPacientes.begin(), listaPacientes.end());
+				return;
 			}
 		}
 	}
@@ -328,21 +332,19 @@ void is::borrarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &
 	}
 }
 
-void is::modificarPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+void is::modificarPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
 
 	if(buscarPaciente(listaPacientes, p))
 	{
-		for (std::list<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
+		for (std::vector<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it)
 		{
 			if(p == *it)
 			{
 				it->leerPaciente();
 				//Reordenar lista de pacientes
-				listaPacientes.sort();
-				
+				//std::sort(listaPacientes.begin(), listaPacientes.end());
 				std::cout << "FUNCION MODIFICAR PACIENTE -> Paciente modificado con éxito." << std::endl;
-
 				return;
 			}
 		}
@@ -353,7 +355,7 @@ void is::modificarPaciente (std::list<is::Paciente> &listaPacientes, is::Pacient
 	}
 }
 
-void is::consultarCitasPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+void is::consultarCitasPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
 	if(buscarPaciente(listaPacientes, p))
 	{
@@ -363,13 +365,11 @@ void is::consultarCitasPaciente (std::list<is::Paciente> &listaPacientes, is::Pa
 		}
 		else
 		{
-			p.setIndiceListaCitasBegin();
-
-			for(int i = 0; i < p.getTamanoListaCitas(); ++i)
+			for(p.setIndiceListaCitasBegin(); p.getIndiceListaCitas() < p.getTamanoListaCitas(); p.avanzarCitaAdelante())
 			{
-				std::cout << "\tCita [" << i+1 << "]: " << std::endl;
+				
+				std::cout << "\tCita [" << p.getIndiceListaCitas()+1 << "]:"<< std::endl;
 				p.getCurrentCita().escribirCita();
-				p.avanzarCitaAdelante();
 			}
 		}
 	
@@ -380,7 +380,7 @@ void is::consultarCitasPaciente (std::list<is::Paciente> &listaPacientes, is::Pa
 	}
 }
 
-void is::anadirCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c)
+void is::anadirCita (std::vector<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c)
 {
 	if(buscarPaciente(listaPacientes, p))
 	{
@@ -392,8 +392,15 @@ void is::anadirCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, i
 		}
 		else
 		{
-			p.guardarCita(c);
-			std::cout << "FUNCION AÑADIR CITA -> Cita añadida con éxito." << std::endl;
+			std::cout << "Cita a guardar:" << c << std::endl;
+			for(unsigned int i=0; i<listaPacientes.size(); i++)
+			{
+				if (listaPacientes[i] == p){
+					listaPacientes[i].guardarCita(c);
+					std::cout << "FUNCION AÑADIR CITA -> Cita añadida con éxito." << std::endl;
+					return;
+				}	
+			}			
 		}
 	}
 	else
@@ -402,7 +409,7 @@ void is::anadirCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, i
 	}
 }
 
-void is::modificarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c)
+void is::modificarCita (std::vector<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c)
 {
 	if(buscarPaciente(listaPacientes, p))
 		{
@@ -411,11 +418,18 @@ void is::modificarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p
 	
 			if(p.buscarCita(c))
 			{
-				p.borrarCita(c);
-
-				std::cout <<"Introduzca los nuevos datos de la cita: " << std::endl;
-				c.leerCita();
-				p.guardarCita(c);
+				for(unsigned int i=0; i<listaPacientes.size(); i++)
+				{
+					if (listaPacientes[i] == p)
+					{
+						listaPacientes[i].borrarCita(c);
+						std::cout <<"Introduzca los nuevos datos de la cita: " << std::endl;
+						c.leerCita();
+						listaPacientes[i].guardarCita(c);
+						std::cout << "FUNCION MODIFICAR CITA -> Cita añadida con éxito." << std::endl;
+						return;
+					}
+				}	
 			}
 			else
 			{
@@ -428,7 +442,7 @@ void is::modificarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p
 		}
 }
 
-void is::cancelarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c)
+void is::cancelarCita (std::vector<is::Paciente> &listaPacientes, is::Paciente &p, is::Cita &c)
 {
 	if(buscarPaciente(listaPacientes, p))
 		{
@@ -437,7 +451,14 @@ void is::cancelarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p,
 	
 			if(p.buscarCita(c))
 			{
-				p.borrarCita(c);
+				for(unsigned int i=0; i<listaPacientes.size(); i++)
+				{
+					if (listaPacientes[i] == p)
+					{
+						listaPacientes[i].borrarCita(c);
+						return;
+					}
+				}
 			}
 			else
 			{
@@ -450,47 +471,52 @@ void is::cancelarCita (std::list<is::Paciente> &listaPacientes, is::Paciente &p,
 		}
 }
 
-void is::consultarHistorialPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+void is::consultarHistorialPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
 	if(buscarPaciente(listaPacientes, p))
 	{
 		if(p.estaVaciaListaHistorial())
 		{
-			std::cout << "El listado de registros de historial de este paciente, está vacío." << std::endl;
+			std::cout << "El listado de historiales de este paciente, está vacía." << std::endl;
 		}
 		else
 		{
-			p.setIndiceListaHistorialBegin();
-
-			for(int i = 0; i < p.getTamanoListaHistorial(); ++i)
+			for(p.setIndiceListaHistorialBegin(); p.getIndiceListaHistorial() < p.getTamanoListaHistorial(); p.avanzarHistorialAdelante())
 			{
-				std::cout << "\tRegistro de historial [" << i+1 << "]: " << std::endl;
+				std::cout << "\tHistorial [" << p.getIndiceListaHistorial()+1 << "]:"<< std::endl;
 				p.getCurrentHistorial().escribirHistorial();
-				p.avanzarHistorialAdelante();
 			}
 		}
 	
 	}
 	else
 	{
-   		std::cout << "FUNCION CONSULTAR HISTORIAL PACIENTE -> No se ha podido encontrar el paciente en la base de datos." << std::endl;
+   		std::cout << "FUNCION CONSULTAR CITAS PACIENTE -> No se ha podido encontrar el paciente en la base de datos." << std::endl;
 	}
 }
 
-void is::anadirHistorial (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Historial &h)
+void is::anadirHistorial (std::vector<is::Paciente> &listaPacientes, is::Paciente &p, is::Historial &h)
 {
 	if(buscarPaciente(listaPacientes, p))
 	{
 		h.leerHistorial();
 	
 		if(p.buscarHistorial(h))
-		{
+		{	
 			std::cout << "FUNCION AÑADIR HISTORIAL -> No se le puede asignar este nuevo registro al historial de dicho paciente ya que este ya tiene dicho registro del historial." << std::endl;
 		}
 		else
 		{
-			p.guardarHistorial(h);
-			std::cout << "FUNCION AÑADIR HISTORIAL -> Registro de historial añadido con éxito." << std::endl;
+			for(unsigned int i=0; i<listaPacientes.size(); i++)
+			{
+				if (listaPacientes[i] == p)
+				{
+					listaPacientes[i].guardarHistorial(h);
+					std::cout << "FUNCION AÑADIR HISTORIAL -> Registro de historial añadido con éxito." << std::endl;
+					return;
+				}
+			}
+			
 		}
 	}
 	else
@@ -499,7 +525,7 @@ void is::anadirHistorial (std::list<is::Paciente> &listaPacientes, is::Paciente 
 	}
 }
 
-void is::consultarTratamientosPaciente (std::list<is::Paciente> &listaPacientes, is::Paciente &p)
+void is::consultarTratamientosPaciente (std::vector<is::Paciente> &listaPacientes, is::Paciente &p)
 {
 	if(buscarPaciente(listaPacientes, p))
 	{
@@ -509,13 +535,11 @@ void is::consultarTratamientosPaciente (std::list<is::Paciente> &listaPacientes,
 		}
 		else
 		{
-			p.setIndiceListaTratamientosBegin();
-
-			for(int i = 0; i < p.getTamanoListaTratamientos(); ++i)
+			for(p.setIndiceListaTratamientosBegin(); p.getIndiceListaTratamientos() < p.getTamanoListaTratamientos(); p.avanzarTratamientoAdelante())
 			{
-				std::cout << "\tTratamiento [" << i+1 << "]: " << std::endl;
+				//std::cout << "indice tratamiento: " << p.getIndiceListaTratamientos() << "tamaño lista tratamiento: " << p.getTamanoListaTratamientos()<< std::endl;
+				std::cout << "\tTratamiento: " << std::endl;
 				p.getCurrentTratamiento().escribirTratamiento();
-				p.avanzarTratamientoAdelante();
 			}
 		}
 	
@@ -526,7 +550,7 @@ void is::consultarTratamientosPaciente (std::list<is::Paciente> &listaPacientes,
 	}
 }
 
-void is::anadirTratamiento (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Tratamiento &t)
+void is::anadirTratamiento (std::vector<is::Paciente> &listaPacientes, is::Paciente &p, is::Tratamiento &t)
 {
 	if(buscarPaciente(listaPacientes, p))
 	{
@@ -538,8 +562,15 @@ void is::anadirTratamiento (std::list<is::Paciente> &listaPacientes, is::Pacient
 		}
 		else
 		{
-			p.guardarTratamiento(t);
-			std::cout << "FUNCION AÑADIR TRATAMIENTO -> Tratamiento añadido con éxito." << std::endl;
+			for(unsigned int i=0; i<listaPacientes.size(); i++)
+			{
+				if (listaPacientes[i] == p)
+				{
+					listaPacientes[i].guardarTratamiento(t);
+					std::cout << "FUNCION AÑADIR TRATAMIENTO -> Tratamiento añadido con éxito." << std::endl;
+					return;
+				}
+			}	
 		}
 	}
 	else
@@ -548,7 +579,7 @@ void is::anadirTratamiento (std::list<is::Paciente> &listaPacientes, is::Pacient
 	}
 }
 
-void is::cancelarTratamiento (std::list<is::Paciente> &listaPacientes, is::Paciente &p, is::Tratamiento &t)
+void is::cancelarTratamiento (std::vector<is::Paciente> &listaPacientes, is::Paciente &p, is::Tratamiento &t)
 {
 	if(buscarPaciente(listaPacientes, p))
 		{
@@ -557,10 +588,17 @@ void is::cancelarTratamiento (std::list<is::Paciente> &listaPacientes, is::Pacie
 	
 			if(p.buscarTratamiento(t))
 			{
-				p.borrarTratamiento(t);
+				for(unsigned int i=0; i<listaPacientes.size(); i++)
+				{
+					if (listaPacientes[i] == p)
+					{
+						listaPacientes[i].borrarTratamiento(t);
+						return;
+					}
+				}	
 			}
 			else
-			{
+			{	
 				std::cout << "FUNCION CANCELAR TRATAMIENTO -> No se ha encontrado el tratamiento en el paciente." << std::endl;
 			}
 		}
@@ -570,7 +608,7 @@ void is::cancelarTratamiento (std::list<is::Paciente> &listaPacientes, is::Pacie
 		}
 }
 
-void is::consultarCitasDiaPacientes (std::list<is::Paciente> &listaPacientes)
+void is::consultarCitasDiaPacientes (std::vector<is::Paciente> &listaPacientes)
 {
 	if(!comprobarListaPacientesVacia(listaPacientes))
 	{	
@@ -580,7 +618,7 @@ void is::consultarCitasDiaPacientes (std::list<is::Paciente> &listaPacientes)
 		std::cout << "Introduce la fecha de la que quieras consultar las citas (yyyy/mm/dd): ";
 		std::getline(std::cin,fecha);
 
-		for (std::list<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it, i++)
+		for (std::vector<is::Paciente>::iterator it = listaPacientes.begin(); it != listaPacientes.end(); ++it, i++)
 		{
 			if(!it->estaVaciaListaCitas())
 			{
@@ -594,7 +632,10 @@ void is::consultarCitasDiaPacientes (std::list<is::Paciente> &listaPacientes)
 						it->escribirPaciente();
 						std::cout << "\tCita [" << j+1 << "]: " << std::endl;
 						it->getCurrentCita().escribirCita();
-						it->avanzarCitaAdelante();
+						if (it->getTamanoListaCitas() != it->getIndiceListaCitas())
+						{
+							it->avanzarCitaAdelante();
+						}
 					}
 				}
 			}
